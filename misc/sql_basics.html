@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Data science, particle physics and the Chinese language.">
+    <meta name="author" content="James C. Loach">
+    <link rel="icon" href="../favicon.ico">
+
+    <title>SQL basics - misc</title>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="../theme/js/jquery.min.js"><\/script>')
+    </script>
+
+    <!-- Typekit -->
+    <script src="https://use.typekit.net/slk1znu.js"></script>
+    <script>try{Typekit.load({ async: false });}catch(e){}</script>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="../theme/css/bootstrap.css" />
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link rel="stylesheet" type="text/css" href="../theme/css/ie10-viewport-bug-workaround.css" />
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../theme/css/notebooks.css" />
+    <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700|Roboto:400,500,700' rel='stylesheet' type='text/css'>
+
+
+    <meta name="tags" content="sql" />
+
+</head>
+
+<body>
+
+  <div class="navbar navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="..">James C. Loach</a>
+       </div>
+       <div class="navbar-collapse collapse" id="searchbar">
+         <ul class="nav navbar-nav navbar-right">
+           <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social<span class="caret"></span></a>
+             <ul class="dropdown-menu">
+               <li><a href="https://www.linkedin.com/in/jamesloach">LinkedIn</a></li>
+               <li><a href="https://github.com/nepahwin">GitHub</a></li>
+             </ul>
+           </li>
+           <!-- <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+               role="button" aria-haspopup="true" aria-expanded="false">Notes<span class="caret"></span></a>
+             <ul class="dropdown-menu">
+               <li><a href="..#Python">Python</a></li>
+               <li><a href="..#Statistics">Statistics</a></li>
+               <li><a href="..#Chinese">Chinese</a></li>
+             </ul>
+           </li> -->
+           <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+               role="button" aria-haspopup="true" aria-expanded="false">Projects<span class="caret"></span></a>
+             <ul class="dropdown-menu">
+               <li><a href="http://sinophenia.com">Sinophenia</a></li>
+               <li><a href="http://tangerinechinese.com">Tangerine Chinese</a></li>
+               <li><a href="https://radiopurity.org">Radiopurity.org</a></li>
+             </ul>
+           </li>
+         </ul>
+
+         <!-- <form class="navbar-form" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
+           <div class="form-group" style="display:inline;">
+             <div class="input-group" style="display:table;">
+               <span class="input-group-addon" style="width:1%;"><span class="glyphicon glyphicon-search"></span></span>
+               <input class="form-control search-query" name="q" id="tipue_search_input" placeholder="" required autocomplete="off" type="text">
+             </div>
+           </div>
+         </form> -->
+
+       </div>
+    </div>
+  </div>
+
+  <!-- end of header section -->
+  <div class="container">
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h1 class="text-center">SQL basics</h1>
+    <ol class="breadcrumb text-center">
+      <li>
+        <time class="published" datetime="2017-04-03T12:00:00+01:00">
+          03 April 2017
+        </time>
+      </li>
+      <li>misc</li>
+      <li>sql</li>
+    </ol>
+  <h4>Setup</h4>
+<ul>
+<li>Download isql-sql from <a href="https://github.com/catherinedevlin/isql-sql">here</a> 
+or use <code>pip install isql-sql</code></li>
+<li>Download Iris dataset in <code>csv</code> format from <a href="https://archive.ics.uci.edu/ml/datasets/Iris">here</a></li>
+<li>Install <code>postgresql</code> locally</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">sql</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">SqlMagic</span><span class="o">.</span><span class="n">feedback</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="o">%</span><span class="n">sql</span> <span class="n">postgresql</span><span class="p">:</span><span class="o">//</span><span class="n">jloach</span><span class="err">@</span><span class="o">/</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>&#39;Connected: jloach@&#39;
+</pre></div>
+
+
+<p>Make a database to play with</p>
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">parishes</span><span class="p">;</span> <span class="c1">-- Delete existing table under this name</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">parishes</span><span class="p">(</span>
+  <span class="n">id</span>          <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> 
+  <span class="n">name</span>        <span class="nb">TEXT</span><span class="p">,</span>
+  <span class="n">population</span>  <span class="nb">INT</span><span class="p">,</span>
+  <span class="n">loc_n</span>       <span class="nb">REAL</span><span class="p">,</span>
+  <span class="n">loc_w</span>       <span class="nb">REAL</span>
+<span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">parishes</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Blymhill &amp; Weston-under-Lizard&#39;</span><span class="p">,</span> <span class="mi">823</span><span class="p">,</span> <span class="mi">52</span><span class="p">.</span><span class="mi">702</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">284</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">parishes</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Lapley, Stretton and Wheaton Aston&#39;</span><span class="p">,</span> <span class="mi">2548</span><span class="p">,</span> <span class="mi">52</span><span class="p">.</span><span class="mi">71</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">2</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">parishes</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Church Eaton&#39;</span><span class="p">,</span> <span class="mi">680</span><span class="p">,</span> <span class="mi">52</span><span class="p">.</span><span class="mi">757</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">222</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">parishes</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Penkridge&#39;</span><span class="p">,</span> <span class="mi">8526</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">parishes</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Sheriffhales&#39;</span><span class="p">,</span> <span class="mi">722</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">);</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>[]
+</pre></div>
+
+
+<h4>SELECT</h4>
+<div class="codehilite"><pre><span></span><span class="o">%</span><span class="k">sql</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">parishes</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+        <th>loc_w</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Blymhill &amp; Weston-under-Lizard</td>
+        <td>823</td>
+        <td>52.702</td>
+        <td>2.284</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Lapley, Stretton and Wheaton Aston</td>
+        <td>2548</td>
+        <td>52.71</td>
+        <td>2.2</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Church Eaton</td>
+        <td>680</td>
+        <td>52.757</td>
+        <td>2.222</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Penkridge</td>
+        <td>8526</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Sheriffhales</td>
+        <td>722</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+</table>
+
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="n">name</span> <span class="k">as</span> <span class="ss">&quot;Parish&quot;</span><span class="p">,</span>
+       <span class="n">population</span> <span class="k">as</span> <span class="ss">&quot;Population&quot;</span> 
+  <span class="k">FROM</span> <span class="n">parishes</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>Parish</th>
+        <th>Population</th>
+    </tr>
+    <tr>
+        <td>Blymhill &amp; Weston-under-Lizard</td>
+        <td>823</td>
+    </tr>
+    <tr>
+        <td>Lapley, Stretton and Wheaton Aston</td>
+        <td>2548</td>
+    </tr>
+    <tr>
+        <td>Church Eaton</td>
+        <td>680</td>
+    </tr>
+    <tr>
+        <td>Penkridge</td>
+        <td>8526</td>
+    </tr>
+    <tr>
+        <td>Sheriffhales</td>
+        <td>722</td>
+    </tr>
+</table>
+
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="n">name</span> <span class="k">as</span> <span class="ss">&quot;Parish&quot;</span><span class="p">,</span>
+       <span class="n">ROUND</span><span class="p">(</span><span class="n">population</span><span class="o">/</span><span class="mi">10</span><span class="p">.)</span> <span class="k">as</span> <span class="ss">&quot;Population/10&quot;</span> 
+  <span class="k">FROM</span> <span class="n">parishes</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>Parish</th>
+        <th>Population/10</th>
+    </tr>
+    <tr>
+        <td>Blymhill &amp; Weston-under-Lizard</td>
+        <td>82</td>
+    </tr>
+    <tr>
+        <td>Lapley, Stretton and Wheaton Aston</td>
+        <td>255</td>
+    </tr>
+    <tr>
+        <td>Church Eaton</td>
+        <td>68</td>
+    </tr>
+    <tr>
+        <td>Penkridge</td>
+        <td>853</td>
+    </tr>
+    <tr>
+        <td>Sheriffhales</td>
+        <td>72</td>
+    </tr>
+</table>
+
+<h4>LIMIT</h4>
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="o">*</span>
+  <span class="k">FROM</span> <span class="n">parishes</span> 
+ <span class="k">LIMIT</span> <span class="mi">2</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+        <th>loc_w</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Blymhill &amp; Weston-under-Lizard</td>
+        <td>823</td>
+        <td>52.702</td>
+        <td>2.284</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Lapley, Stretton and Wheaton Aston</td>
+        <td>2548</td>
+        <td>52.71</td>
+        <td>2.2</td>
+    </tr>
+</table>
+
+<h4>WHERE</h4>
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="o">*</span> 
+  <span class="k">FROM</span> <span class="n">parishes</span>
+ <span class="k">WHERE</span> <span class="n">population</span> <span class="o">&gt;</span> <span class="mi">1000</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+        <th>loc_w</th>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Lapley, Stretton and Wheaton Aston</td>
+        <td>2548</td>
+        <td>52.71</td>
+        <td>2.2</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Penkridge</td>
+        <td>8526</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+</table>
+
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="o">*</span> 
+  <span class="k">FROM</span> <span class="n">parishes</span> 
+ <span class="k">WHERE</span> <span class="n">name</span> <span class="o">&gt;</span> <span class="s1">&#39;L&#39;</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+        <th>loc_w</th>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Lapley, Stretton and Wheaton Aston</td>
+        <td>2548</td>
+        <td>52.71</td>
+        <td>2.2</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Penkridge</td>
+        <td>8526</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Sheriffhales</td>
+        <td>722</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+</table>
+
+<h4><code>LIKE</code> / <code>ILIKE</code></h4>
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="o">*</span> 
+  <span class="k">FROM</span> <span class="n">parishes</span> 
+ <span class="k">WHERE</span> <span class="n">name</span> 
+  <span class="k">LIKE</span> <span class="s1">&#39;B%&#39;</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+        <th>loc_w</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Blymhill &amp; Weston-under-Lizard</td>
+        <td>823</td>
+        <td>52.702</td>
+        <td>2.284</td>
+    </tr>
+</table>
+
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="o">*</span> 
+  <span class="k">FROM</span> <span class="n">parishes</span> 
+ <span class="k">WHERE</span> <span class="n">name</span> 
+  <span class="k">LIKE</span> <span class="s1">&#39;P_______e&#39;</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+        <th>loc_w</th>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Penkridge</td>
+        <td>8526</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+</table>
+
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="o">*</span> 
+  <span class="k">FROM</span> <span class="n">parishes</span> 
+ <span class="k">WHERE</span> <span class="n">name</span> 
+ <span class="k">ILIKE</span> <span class="s1">&#39;b%&#39;</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+        <th>loc_w</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Blymhill &amp; Weston-under-Lizard</td>
+        <td>823</td>
+        <td>52.702</td>
+        <td>2.284</td>
+    </tr>
+</table>
+
+<h4>IN</h4>
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="o">*</span> 
+  <span class="k">FROM</span> <span class="n">parishes</span> 
+ <span class="k">WHERE</span> <span class="n">name</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;Penkridge&#39;</span><span class="p">,</span> <span class="s1">&#39;Church Eaton&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+        <th>loc_w</th>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Church Eaton</td>
+        <td>680</td>
+        <td>52.757</td>
+        <td>2.222</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Penkridge</td>
+        <td>8526</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+</table>
+
+<h4>BETWEEN</h4>
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="o">*</span> 
+  <span class="k">FROM</span> <span class="n">parishes</span> 
+ <span class="k">WHERE</span> <span class="n">population</span> <span class="k">BETWEEN</span> <span class="mi">500</span> <span class="k">AND</span> <span class="mi">2000</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+        <th>loc_w</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Blymhill &amp; Weston-under-Lizard</td>
+        <td>823</td>
+        <td>52.702</td>
+        <td>2.284</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Church Eaton</td>
+        <td>680</td>
+        <td>52.757</td>
+        <td>2.222</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Sheriffhales</td>
+        <td>722</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+</table>
+
+<h4>NULL</h4>
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="o">*</span>
+  <span class="k">FROM</span> <span class="n">parishes</span> 
+ <span class="k">WHERE</span> <span class="n">loc_n</span> <span class="k">IS</span> <span class="k">NULL</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+        <th>loc_w</th>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Penkridge</td>
+        <td>8526</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Sheriffhales</td>
+        <td>722</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+</table>
+
+<h4>OR / AND / NOT</h4>
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="o">*</span> 
+  <span class="k">FROM</span> <span class="n">parishes</span> 
+ <span class="k">WHERE</span> <span class="p">(</span><span class="n">name</span> <span class="k">LIKE</span> <span class="s1">&#39;P%&#39;</span> <span class="k">OR</span> <span class="n">population</span> <span class="o">&lt;</span> <span class="mi">800</span><span class="p">)</span> <span class="k">AND</span> <span class="k">NOT</span> <span class="n">loc_n</span> <span class="k">IS</span> <span class="k">NULL</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+        <th>loc_w</th>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Church Eaton</td>
+        <td>680</td>
+        <td>52.757</td>
+        <td>2.222</td>
+    </tr>
+</table>
+
+<h4>ORDER BY / DESC</h4>
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="o">*</span>
+  <span class="k">FROM</span> <span class="n">parishes</span>
+ <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">population</span> <span class="k">DESC</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+        <th>loc_w</th>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Penkridge</td>
+        <td>8526</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Lapley, Stretton and Wheaton Aston</td>
+        <td>2548</td>
+        <td>52.71</td>
+        <td>2.2</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Blymhill &amp; Weston-under-Lizard</td>
+        <td>823</td>
+        <td>52.702</td>
+        <td>2.284</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Sheriffhales</td>
+        <td>722</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Church Eaton</td>
+        <td>680</td>
+        <td>52.757</td>
+        <td>2.222</td>
+    </tr>
+</table>
+
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">population</span>
+  <span class="k">FROM</span> <span class="n">parishes</span>
+ <span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">2</span> <span class="c1">-- Doesn&#39;t work in all SQL variants </span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>name</th>
+        <th>population</th>
+    </tr>
+    <tr>
+        <td>Church Eaton</td>
+        <td>680</td>
+    </tr>
+    <tr>
+        <td>Sheriffhales</td>
+        <td>722</td>
+    </tr>
+    <tr>
+        <td>Blymhill &amp; Weston-under-Lizard</td>
+        <td>823</td>
+    </tr>
+    <tr>
+        <td>Lapley, Stretton and Wheaton Aston</td>
+        <td>2548</td>
+    </tr>
+    <tr>
+        <td>Penkridge</td>
+        <td>8526</td>
+    </tr>
+</table>
+
+<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">loc_n</span>
+  <span class="k">FROM</span> <span class="n">parishes</span>
+ <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">population</span><span class="p">,</span> <span class="n">loc_n</span> <span class="c1">-- Though it isn&#39;t meaningful here</span>
+</pre></div>
+
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>name</th>
+        <th>population</th>
+        <th>loc_n</th>
+    </tr>
+    <tr>
+        <td>Church Eaton</td>
+        <td>680</td>
+        <td>52.757</td>
+    </tr>
+    <tr>
+        <td>Sheriffhales</td>
+        <td>722</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>Blymhill &amp; Weston-under-Lizard</td>
+        <td>823</td>
+        <td>52.702</td>
+    </tr>
+    <tr>
+        <td>Lapley, Stretton and Wheaton Aston</td>
+        <td>2548</td>
+        <td>52.71</td>
+    </tr>
+    <tr>
+        <td>Penkridge</td>
+        <td>8526</td>
+        <td>None</td>
+    </tr>
+</table>
+  </div>
+</div>
+<br>
+  </div>
+  <!-- start of footer section -->
+  <footer class="footer">
+    <div class="container text-center">
+      <p class="text-muted">
+        <small>Copyright James C. Loach, <time datetime="2017">2017</time>.</small>
+      </p>
+    </div>
+  </footer>
+
+  <!-- This jQuery line finds any span that contains code highlighting classes and then selects the parent <pre> tag and adds a border. This is done as a workaround to visually distinguish the code inputs and outputs -->
+  <script>
+    $( ".hll, .n, .c, .err, .k, .o, .cm, .cp, .c1, .cs, .gd, .ge, .gr, .gh, .gi, .go, .gp, .gs, .gu, .gt, .kc, .kd, .kn, .kp, .kr, .kt, .m, .s, .na, .nb, .nc, .no, .nd, .ni, .ne, .nf, .nl, .nn, .nt, .nv, .ow, .w, .mf, .mh, .mi, .mo, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss, .bp, .vc, .vg, .vi, .il" ).parent( "pre" ).css( "border", "1px solid #DEDEDE" );
+  </script>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../theme/js/bootstrap.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="../theme/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+
+</html>
