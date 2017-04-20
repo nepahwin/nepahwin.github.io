@@ -176,7 +176,7 @@ color : leaf green
 &lt;p&gt;Useful in processing strings.&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;field_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Bananas, oranges      101 134,23  £11,23&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;field_2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Apples, pineapples    102 234,53  £14,13&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;field_3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Kiwi fruite           103  13,03   £2,99&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;field_3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Kiwi fruit            103  13,03   £2,99&amp;quot;&lt;/span&gt;
 
 &lt;span class="n"&gt;DESCRIPTION&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;slice&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
@@ -186,7 +186,7 @@ color : leaf green
 
 
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Bananas, oranges      
-Kiwi fruite
+Kiwi fruit
 &lt;/pre&gt;&lt;/div&gt;
 
 
