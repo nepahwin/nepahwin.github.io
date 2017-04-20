@@ -27,9 +27,17 @@ http://www.tipue.com/search
 #tipue_search_results_count, #tipue_search_warning_head
 {
     margin-bottom: 30px;
-    border-bottom: 1px #eee solid;
+    border-bottom: 1px #e9e3da solid;
     padding-bottom: 10px;
-    font-size: 30px;
+    padding-top: 25px;
+    /*font-size: 30px; */
+    /* James additions */
+    font-family: "franklin-gothic-urw-comp",sans-serif;
+    font-size: 60px;
+    font-weight: 500;
+    color: #716558;
+    text-align: center;
+    /* End James additions */
 }
 
 .tipue_search_content_title

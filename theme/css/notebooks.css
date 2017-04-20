@@ -3,7 +3,7 @@ Code Cell Highlighting
 Source: http://www.sebastianraschka.com/CSS/codehilite.css
 ---------------------------------------------------------*/
 
-.hll { background-color: #ffffcc }
+.hll { background-color: white }
 .c { color: #408080; font-style: italic } /* Comment */
 .err { border: 1px solid #FF0000 } /* Error */
 .k { color: #008000; font-weight: bold } /* Keyword */
@@ -74,19 +74,21 @@ Source: http://www.sebastianraschka.com/CSS/codehilite.css
 Tables
 ---------------------------------------------------------*/
 
-.body table,tr,th,td{
-    font-family: sans-serif;
-    border:1px solid black;
-    border-collapse:collapse;
-    font-size:1.2rem;
-    margin: 1em 0 2em 0;
-  }
+.body table, tr, th, td {
+  font-family: sans-serif;
+  border:3px solid #eeeae3 !important;
+  border-collapse:collapse;
+  font-size:1.2rem;
+  margin: 1em 0 2em 0;
+  background-color:white;
+}
 
-.body td, th{
-    text-align:left;
-    vertical-align:middle;
-    padding:4px;
-    word-break:break-all;}
+.body td, th {
+  text-align:left;
+  vertical-align:middle;
+  padding:4px;
+  word-break:break-all;
+}
 
  .body th{font-weight:bold;}
 
@@ -94,11 +96,13 @@ Tables
 Images
 ---------------------------------------------------------*/
 
- img{
-    max-width: 100%;
-    height: auto;
-    width: 100%\9; /* ie8 */
-    display:block;}
+img{
+  max-width: 100%;
+  height: auto;
+  width: 100%\9; /* ie8 */
+  display:block;
+  background-color:white;
+}
 
 /* ---------------------------------------------------------
 Render Math

@@ -8,7 +8,7 @@
 <meta name="author" content="James C. Loach">
 <link rel="icon" href="../favicon.ico">
 
-<title>SQL from a Jupyter notebook - misc</title>
+<title>Slices - python</title>
 
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -30,7 +30,7 @@
 <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700|Roboto:400,500,700' rel='stylesheet' type='text/css'>
 
 
-    <meta name="tags" content="sql" />
+    <meta name="tags" content="general" />
 
 <body>
 
@@ -104,138 +104,75 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <div class="spacer10"></div>
-    <h1 class="text-center">SQL from a Jupyter notebook</h1>
+    <h1 class="text-center">Slices</h1>
     <ol class="breadcrumb text-center">
       <li>
-        <time class="published" datetime="2017-04-01T12:00:00+01:00">
-          01 April 2017
+        <time class="published" datetime="2017-04-20T12:00:00+01:00">
+          20 April 2017
         </time>
       </li>
-      <li>misc</li>
-      <li>sql</li>
+      <li>python</li>
+      <li>general</li>
     </ol>
-  <h4>Setup</h4>
-<ul>
-<li>Download ipython-sql from <a href="https://github.com/catherinedevlin/ipython-sql">here</a> 
-or use <code>pip install ipython-sql</code></li>
-<li>Download Iris dataset in <code>csv</code> format from <a href="https://archive.ics.uci.edu/ml/datasets/Iris">here</a></li>
-<li>Install <code>postgresql</code> locally</li>
-</ul>
-<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+  <h4>slice objects</h4>
+<p>A <code>slice</code> object can be passed in place of an index.</p>
+<div class="codehilite"><pre><span></span><span class="n">cut</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;The unknown unknown&quot;</span>
+
+<span class="n">text</span><span class="p">[</span><span class="n">cut</span><span class="p">]</span>
 </pre></div>
 
 
-<h4>SQL magic</h4>
-<p>Load the sql extension</p>
-<div class="codehilite"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">sql</span>
+<div class="codehilite"><pre><span></span>&#39;unknown&#39;
 </pre></div>
 
 
-<p>Connect to the database</p>
-<div class="codehilite"><pre><span></span><span class="o">%</span><span class="n">sql</span> <span class="n">postgresql</span><span class="p">:</span><span class="o">//</span><span class="n">jloach</span><span class="err">@</span><span class="o">/</span>
+<p>Useful in processing strings.</p>
+<div class="codehilite"><pre><span></span><span class="n">field_1</span> <span class="o">=</span> <span class="s2">&quot;Bananas, oranges      101 134,23  £11,23&quot;</span>
+<span class="n">field_2</span> <span class="o">=</span> <span class="s2">&quot;Apples, pineapples    102 234,53  £14,13&quot;</span>
+<span class="n">field_3</span> <span class="o">=</span> <span class="s2">&quot;Kiwi fruite           103  13,03   £2,99&quot;</span>
+
+<span class="n">DESCRIPTION</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">field_1</span><span class="p">[</span><span class="n">DESCRIPTION</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">field_3</span><span class="p">[</span><span class="n">DESCRIPTION</span><span class="p">])</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>&#39;Connected: jloach@&#39;
+<div class="codehilite"><pre><span></span>Bananas, oranges      
+Kiwi fruite
 </pre></div>
 
 
-<p>Load some data into a DataFrame and put it in the database</p>
-<div class="codehilite"><pre><span></span><span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">]</span>
-<span class="n">iris</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;iris.csv&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
-<span class="o">%</span><span class="n">sql</span> <span class="n">DROP</span> <span class="n">TABLE</span> <span class="n">iris</span>
-<span class="o">%</span><span class="n">sql</span> <span class="n">PERSIST</span> <span class="n">iris</span>
+<h4>Assigning to slices</h4>
+<div class="codehilite"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">a</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>Done.
-
-
-
-
-
-&#39;Persisted iris&#39;
+<div class="codehilite"><pre><span></span>[0, 1, 2, 3, 4, 5, 6]
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
-<span class="n">SELECT</span> <span class="o">*</span> 
-<span class="n">FROM</span> <span class="n">iris</span> 
-<span class="n">LIMIT</span> <span class="mi">3</span>
+<div class="codehilite"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span>
+<span class="n">a</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>3 rows affected.
+<div class="codehilite"><pre><span></span>[0, 1, 12, 14, 4, 5, 6]
 </pre></div>
 
 
-<table class="table table-bordered table-condensed">
-    <tr>
-        <th>index</th>
-        <th>sepal_length</th>
-        <th>sepal_width</th>
-        <th>petal_length</th>
-        <th>petal_width</th>
-        <th>target</th>
-    </tr>
-    <tr>
-        <td>0</td>
-        <td>5.1</td>
-        <td>3.5</td>
-        <td>1.4</td>
-        <td>0.2</td>
-        <td>Iris-setosa</td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>4.9</td>
-        <td>3.0</td>
-        <td>1.4</td>
-        <td>0.2</td>
-        <td>Iris-setosa</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>4.7</td>
-        <td>3.2</td>
-        <td>1.3</td>
-        <td>0.2</td>
-        <td>Iris-setosa</td>
-    </tr>
-</table>
-
-<div class="codehilite"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">_</span>
+<div class="codehilite"><pre><span></span><span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+<span class="n">a</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="o">%</span><span class="n">sql</span> <span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">iris</span>
-<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">keys</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<div class="codehilite"><pre><span></span>[0, 1, 12, 14]
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>150 rows affected.
-[&#39;index&#39;, &#39;sepal_length&#39;, &#39;sepal_width&#39;, &#39;petal_length&#39;, &#39;petal_width&#39;, &#39;target&#39;]
-Iris-setosa
-5.1
-</pre></div>
-
-
-<div class="codehilite"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sepal_length</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">sepal_width</span><span class="p">)</span>
-</pre></div>
-
-
-<div class="codehilite"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x10a7aeba8&gt;
-</pre></div>
-
-
-<p><img alt="png" src="../images/sql_magic_files/sql_magic_13_1.png" /></p>
+<p><a href="https://docs.python.org/3/library/functions.html#slice">v3.6 docs</a></p>
   </div>
 </div>
 <br>
