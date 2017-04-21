@@ -147,11 +147,11 @@
   &lt;thead&gt;
     &lt;tr style="text-align: right;"&gt;
       &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;col_sepal_length&lt;/th&gt;
-      &lt;th&gt;col_sepal_width&lt;/th&gt;
-      &lt;th&gt;col_petal_length&lt;/th&gt;
-      &lt;th&gt;col_petal_width&lt;/th&gt;
-      &lt;th&gt;col_target&lt;/th&gt;
+      &lt;th&gt;sepal_length&lt;/th&gt;
+      &lt;th&gt;sepal_width&lt;/th&gt;
+      &lt;th&gt;petal_length&lt;/th&gt;
+      &lt;th&gt;petal_width&lt;/th&gt;
+      &lt;th&gt;species&lt;/th&gt;
     &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
@@ -215,7 +215,7 @@
       &lt;th&gt;col_sepal_width&lt;/th&gt;
       &lt;th&gt;col_petal_length&lt;/th&gt;
       &lt;th&gt;col_petal_width&lt;/th&gt;
-      &lt;th&gt;col_target&lt;/th&gt;
+      &lt;th&gt;col_species&lt;/th&gt;
     &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
@@ -275,7 +275,7 @@
 
 
 &lt;hr /&gt;
-&lt;p&gt;You can find more info in the &lt;a href="https://docs.python.org/3.6/library/collections.html#collections.deque"&gt;official docs&lt;/a&gt; or in &lt;a href="http://amzn.to/2oxw0Md"&gt;Python for Data Analysis&lt;/a&gt;. And do let me know if you spot an error! You can contact me on &lt;a href="https://twitter.com/jamesloach"&gt;twitter&lt;/a&gt; or &lt;a href="https://github.com/nepahwin/nepahwin.github.io"&gt;github&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Loach</dc:creator><pubDate>Fri, 21 Apr 2017 12:00:00 +0100</pubDate><guid isPermaLink="false">tag:jamesloach.com,2017-04-21:python/renaming_columns.html</guid><category>pandas</category></item><item><title>Rolling window calculations</title><link>http://jamesloach.com/python/rolling_windows.html</link><description>&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;p&gt;You can find more info in the &lt;a href="http://pandas.pydata.org/pandas-docs/stable/index.html"&gt;official docs&lt;/a&gt; or in &lt;a href="http://amzn.to/2oxw0Md"&gt;Python for Data Analysis&lt;/a&gt;. And do let me know if you spot an error! You can contact me on &lt;a href="https://twitter.com/jamesloach"&gt;twitter&lt;/a&gt; or &lt;a href="https://github.com/nepahwin/nepahwin.github.io"&gt;github&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Loach</dc:creator><pubDate>Fri, 21 Apr 2017 12:00:00 +0100</pubDate><guid isPermaLink="false">tag:jamesloach.com,2017-04-21:python/renaming_columns.html</guid><category>pandas</category></item><item><title>Rolling window calculations</title><link>http://jamesloach.com/python/rolling_windows.html</link><description>&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Series&lt;/span&gt;
 &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;display&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max_rows&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
 
