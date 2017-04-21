@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://jamesloach.com/</loc>
-<lastmod>2017-04-20T15:43:30-00:00</lastmod>
+<lastmod>2017-04-21T14:10:27-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -33,7 +33,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://jamesloach.com/python/deque.html</loc>
-<lastmod>2017-07-01T12:00:00+01:00</lastmod>
+<lastmod>2017-04-20T12:00:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>

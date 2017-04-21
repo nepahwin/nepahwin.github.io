@@ -197,6 +197,11 @@ ul.nav a:hover, a:focus, a:visited {
   font-size: 16px;
 }
 
+hr {
+  border-top: 1px solid #e9e3da;
+  font-size: 16px;
+}
+
 .page-header {
   border-bottom: none;
   text-align: center;
@@ -361,7 +366,7 @@ h6, .h6 {
   margin-bottom: 30px;
   list-style: none;
   background-color: transparent;
-  border-radius: #fff9ef;
+ /* border-radius: #fff9ef;*/
 }
 
 .breadcrumb > li:before {
