@@ -379,6 +379,14 @@ h6, .h6 {
   color: #716558;
 }
 
+a.anchor {
+  /* To account for the fixed header obscuring the heading */
+  display: block;
+  position: relative;
+  top: -50px;
+  visibility: hidden;
+}
+
 .panel-body ul {
   padding-left: 20px;
 }
