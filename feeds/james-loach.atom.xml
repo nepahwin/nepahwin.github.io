@@ -1,5 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>James C. Loach</title><link href="http://jamesloach.com/" rel="alternate"></link><link href="http://jamesloach.com/feeds/james-loach.atom.xml" rel="self"></link><id>http://jamesloach.com/</id><updated>2017-04-21T12:00:00+01:00</updated><entry><title>Renaming columns</title><link href="http://jamesloach.com/python/renaming_columns.html" rel="alternate"></link><published>2017-04-21T12:00:00+01:00</published><updated>2017-04-21T12:00:00+01:00</updated><author><name>James Loach</name></author><id>tag:jamesloach.com,2017-04-21:python/renaming_columns.html</id><summary type="html">&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>James C. Loach</title><link href="http://jamesloach.com/" rel="alternate"></link><link href="http://jamesloach.com/feeds/james-loach.atom.xml" rel="self"></link><id>http://jamesloach.com/</id><updated>2017-04-28T12:00:00+01:00</updated><entry><title>Make a dummy index column</title><link href="http://jamesloach.com/python/dummy_index.html" rel="alternate"></link><published>2017-04-28T12:00:00+01:00</published><updated>2017-04-28T12:00:00+01:00</updated><author><name>James Loach</name></author><id>tag:jamesloach.com,2017-04-28:python/dummy_index.html</id><summary type="html">&lt;p&gt;Preliminaries.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Get a suitable data set and put it in a DataFrame.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;load_boston&lt;/span&gt;
+&lt;span class="n"&gt;boston&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_boston&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;boston&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;boston&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;feature_names&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Add a dummy index column.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ID&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100000&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;ID&lt;/th&gt;
+      &lt;th&gt;CRIM&lt;/th&gt;
+      &lt;th&gt;ZN&lt;/th&gt;
+      &lt;th&gt;INDUS&lt;/th&gt;
+      &lt;th&gt;CHAS&lt;/th&gt;
+      &lt;th&gt;NOX&lt;/th&gt;
+      &lt;th&gt;RM&lt;/th&gt;
+      &lt;th&gt;AGE&lt;/th&gt;
+      &lt;th&gt;DIS&lt;/th&gt;
+      &lt;th&gt;RAD&lt;/th&gt;
+      &lt;th&gt;TAX&lt;/th&gt;
+      &lt;th&gt;PTRATIO&lt;/th&gt;
+      &lt;th&gt;B&lt;/th&gt;
+      &lt;th&gt;LSTAT&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;100000&lt;/td&gt;
+      &lt;td&gt;0.00632&lt;/td&gt;
+      &lt;td&gt;18.0&lt;/td&gt;
+      &lt;td&gt;2.31&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.538&lt;/td&gt;
+      &lt;td&gt;6.575&lt;/td&gt;
+      &lt;td&gt;65.2&lt;/td&gt;
+      &lt;td&gt;4.0900&lt;/td&gt;
+      &lt;td&gt;1.0&lt;/td&gt;
+      &lt;td&gt;296.0&lt;/td&gt;
+      &lt;td&gt;15.3&lt;/td&gt;
+      &lt;td&gt;396.90&lt;/td&gt;
+      &lt;td&gt;4.98&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;100001&lt;/td&gt;
+      &lt;td&gt;0.02731&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;7.07&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.469&lt;/td&gt;
+      &lt;td&gt;6.421&lt;/td&gt;
+      &lt;td&gt;78.9&lt;/td&gt;
+      &lt;td&gt;4.9671&lt;/td&gt;
+      &lt;td&gt;2.0&lt;/td&gt;
+      &lt;td&gt;242.0&lt;/td&gt;
+      &lt;td&gt;17.8&lt;/td&gt;
+      &lt;td&gt;396.90&lt;/td&gt;
+      &lt;td&gt;9.14&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;100002&lt;/td&gt;
+      &lt;td&gt;0.02729&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;7.07&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.469&lt;/td&gt;
+      &lt;td&gt;7.185&lt;/td&gt;
+      &lt;td&gt;61.1&lt;/td&gt;
+      &lt;td&gt;4.9671&lt;/td&gt;
+      &lt;td&gt;2.0&lt;/td&gt;
+      &lt;td&gt;242.0&lt;/td&gt;
+      &lt;td&gt;17.8&lt;/td&gt;
+      &lt;td&gt;392.83&lt;/td&gt;
+      &lt;td&gt;4.03&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;100003&lt;/td&gt;
+      &lt;td&gt;0.03237&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;2.18&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.458&lt;/td&gt;
+      &lt;td&gt;6.998&lt;/td&gt;
+      &lt;td&gt;45.8&lt;/td&gt;
+      &lt;td&gt;6.0622&lt;/td&gt;
+      &lt;td&gt;3.0&lt;/td&gt;
+      &lt;td&gt;222.0&lt;/td&gt;
+      &lt;td&gt;18.7&lt;/td&gt;
+      &lt;td&gt;394.63&lt;/td&gt;
+      &lt;td&gt;2.94&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;100004&lt;/td&gt;
+      &lt;td&gt;0.06905&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;2.18&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.458&lt;/td&gt;
+      &lt;td&gt;7.147&lt;/td&gt;
+      &lt;td&gt;54.2&lt;/td&gt;
+      &lt;td&gt;6.0622&lt;/td&gt;
+      &lt;td&gt;3.0&lt;/td&gt;
+      &lt;td&gt;222.0&lt;/td&gt;
+      &lt;td&gt;18.7&lt;/td&gt;
+      &lt;td&gt;396.90&lt;/td&gt;
+      &lt;td&gt;5.33&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;5&lt;/th&gt;
+      &lt;td&gt;100005&lt;/td&gt;
+      &lt;td&gt;0.02985&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;2.18&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.458&lt;/td&gt;
+      &lt;td&gt;6.430&lt;/td&gt;
+      &lt;td&gt;58.7&lt;/td&gt;
+      &lt;td&gt;6.0622&lt;/td&gt;
+      &lt;td&gt;3.0&lt;/td&gt;
+      &lt;td&gt;222.0&lt;/td&gt;
+      &lt;td&gt;18.7&lt;/td&gt;
+      &lt;td&gt;394.12&lt;/td&gt;
+      &lt;td&gt;5.21&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;6&lt;/th&gt;
+      &lt;td&gt;100006&lt;/td&gt;
+      &lt;td&gt;0.08829&lt;/td&gt;
+      &lt;td&gt;12.5&lt;/td&gt;
+      &lt;td&gt;7.87&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.524&lt;/td&gt;
+      &lt;td&gt;6.012&lt;/td&gt;
+      &lt;td&gt;66.6&lt;/td&gt;
+      &lt;td&gt;5.5605&lt;/td&gt;
+      &lt;td&gt;5.0&lt;/td&gt;
+      &lt;td&gt;311.0&lt;/td&gt;
+      &lt;td&gt;15.2&lt;/td&gt;
+      &lt;td&gt;395.60&lt;/td&gt;
+      &lt;td&gt;12.43&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;7&lt;/th&gt;
+      &lt;td&gt;100007&lt;/td&gt;
+      &lt;td&gt;0.14455&lt;/td&gt;
+      &lt;td&gt;12.5&lt;/td&gt;
+      &lt;td&gt;7.87&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.524&lt;/td&gt;
+      &lt;td&gt;6.172&lt;/td&gt;
+      &lt;td&gt;96.1&lt;/td&gt;
+      &lt;td&gt;5.9505&lt;/td&gt;
+      &lt;td&gt;5.0&lt;/td&gt;
+      &lt;td&gt;311.0&lt;/td&gt;
+      &lt;td&gt;15.2&lt;/td&gt;
+      &lt;td&gt;396.90&lt;/td&gt;
+      &lt;td&gt;19.15&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;8&lt;/th&gt;
+      &lt;td&gt;100008&lt;/td&gt;
+      &lt;td&gt;0.21124&lt;/td&gt;
+      &lt;td&gt;12.5&lt;/td&gt;
+      &lt;td&gt;7.87&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.524&lt;/td&gt;
+      &lt;td&gt;5.631&lt;/td&gt;
+      &lt;td&gt;100.0&lt;/td&gt;
+      &lt;td&gt;6.0821&lt;/td&gt;
+      &lt;td&gt;5.0&lt;/td&gt;
+      &lt;td&gt;311.0&lt;/td&gt;
+      &lt;td&gt;15.2&lt;/td&gt;
+      &lt;td&gt;386.63&lt;/td&gt;
+      &lt;td&gt;29.93&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;9&lt;/th&gt;
+      &lt;td&gt;100009&lt;/td&gt;
+      &lt;td&gt;0.17004&lt;/td&gt;
+      &lt;td&gt;12.5&lt;/td&gt;
+      &lt;td&gt;7.87&lt;/td&gt;
+      &lt;td&gt;0.0&lt;/td&gt;
+      &lt;td&gt;0.524&lt;/td&gt;
+      &lt;td&gt;6.004&lt;/td&gt;
+      &lt;td&gt;85.9&lt;/td&gt;
+      &lt;td&gt;6.5921&lt;/td&gt;
+      &lt;td&gt;5.0&lt;/td&gt;
+      &lt;td&gt;311.0&lt;/td&gt;
+      &lt;td&gt;15.2&lt;/td&gt;
+      &lt;td&gt;386.71&lt;/td&gt;
+      &lt;td&gt;17.10&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;You can find more info in the &lt;a href="http://pandas.pydata.org/pandas-docs/stable/index.html"&gt;official docs&lt;/a&gt; or in &lt;a href="http://amzn.to/2oxw0Md"&gt;Python for Data Analysis&lt;/a&gt;. And do let me know if you spot an error! You can contact me on &lt;a href="https://twitter.com/jamesloach"&gt;twitter&lt;/a&gt; or &lt;a href="https://github.com/nepahwin/nepahwin.github.io"&gt;github&lt;/a&gt;.&lt;/p&gt;</summary><category term="pandas"></category></entry><entry><title>Unique values in a column</title><link href="http://jamesloach.com/python/unique_values.html" rel="alternate"></link><published>2017-04-28T12:00:00+01:00</published><updated>2017-04-28T12:00:00+01:00</updated><author><name>James Loach</name></author><id>tag:jamesloach.com,2017-04-28:python/unique_values.html</id><summary type="html">&lt;p&gt;Preliminaries.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Get a suitable data set and put it in a DataFrame.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;load_boston&lt;/span&gt;
+&lt;span class="n"&gt;boston&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_boston&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;boston&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;boston&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;feature_names&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Get the unique values in a column.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;CHAS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;array([ 0.,  1.])
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;See how many entries with each value.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;CHAS&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;0.0    471
+1.0     35
+Name: CHAS, dtype: int64
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr /&gt;
+&lt;p&gt;You can find more info in the &lt;a href="http://pandas.pydata.org/pandas-docs/stable/index.html"&gt;official docs&lt;/a&gt; or in &lt;a href="http://amzn.to/2oxw0Md"&gt;Python for Data Analysis&lt;/a&gt;. And do let me know if you spot an error! You can contact me on &lt;a href="https://twitter.com/jamesloach"&gt;twitter&lt;/a&gt; or &lt;a href="https://github.com/nepahwin/nepahwin.github.io"&gt;github&lt;/a&gt;.&lt;/p&gt;</summary><category term="pandas"></category></entry><entry><title>Renaming columns</title><link href="http://jamesloach.com/python/renaming_columns.html" rel="alternate"></link><published>2017-04-21T12:00:00+01:00</published><updated>2017-04-21T12:00:00+01:00</updated><author><name>James Loach</name></author><id>tag:jamesloach.com,2017-04-21:python/renaming_columns.html</id><summary type="html">&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

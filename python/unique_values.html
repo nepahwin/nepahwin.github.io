@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<meta charset="utf-8">
+  <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Data science, particle physics and the Chinese language.">
 <meta name="author" content="James C. Loach">
 <link rel="icon" href="../favicon.ico">
 
-<title>James C. Loach</title>
+<title>Unique values in a column - python</title>
 
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
-    window.jQuery || document.write('<script src="./theme/js/jquery.min.js"><\/script>')
+    window.jQuery || document.write('<script src="../theme/js/jquery.min.js"><\/script>')
 </script>
 
 <!-- Typekit -->
@@ -21,14 +21,16 @@
 <script>try{Typekit.load({ async: false });}catch(e){}</script>
 
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="./theme/css/bootstrap.css" />
+<link rel="stylesheet" href="../theme/css/bootstrap.css" />
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<link rel="stylesheet" type="text/css" href="./theme/css/ie10-viewport-bug-workaround.css" />
+<link rel="stylesheet" type="text/css" href="../theme/css/ie10-viewport-bug-workaround.css" />
 <!-- Custom styles for this template -->
-<link rel="stylesheet" type="text/css" href="./theme/css/style.css" />
-<link rel="stylesheet" type="text/css" href="./theme/css/notebooks.css" />
+<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../theme/css/notebooks.css" />
 <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700|Roboto:400,500,700' rel='stylesheet' type='text/css'>
 
+
+    <meta name="tags" content="pandas" />
 
 <body>
 
@@ -50,14 +52,14 @@
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href=".">JAMES C. LOACH</a>
+         <a class="navbar-brand" href="..">JAMES C. LOACH</a>
       </div>
        <div class="navbar-collapse collapse" id="searchbar">
          <ul class="nav navbar-nav navbar-right">
            <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
              <ul class="dropdown-menu">
-               <li><a href="./pages/about.html">James Loach</a></li>
+               <li><a href="../pages/about.html">James Loach</a></li>
                <li><a href="https://www.linkedin.com/in/jamesloach">LinkedIn</a></li>
                <li><a href="https://github.com/nepahwin">GitHub</a></li>
              </ul>
@@ -66,10 +68,10 @@
              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                role="button" aria-haspopup="true" aria-expanded="false">Notes<span class="caret"></span></a>
              <ul class="dropdown-menu">
-               <li><a href=".#Chinese">Chinese computing</a></li>
-               <li><a href=".#Python">Python</a></li>
-               <li><a href=".#pandas">pandas</a></li>
-               <li><a href=".#Miscellaneous">Miscellaneous</a></li>
+               <li><a href="..#Chinese">Chinese computing</a></li>
+               <li><a href="..#Python">Python</a></li>
+               <li><a href="..#pandas">pandas</a></li>
+               <li><a href="..#Miscellaneous">Miscellaneous</a></li>
              </ul>
            </li>
            <li class="dropdown">
@@ -79,13 +81,13 @@
                <li><a href="http://sinophenia.com">Sinophenia</a></li>
                <li><a href="http://tangerinechinese.com">Tangerine Chinese</a></li>
                <li><a href="https://radiopurity.org">Radiopurity.org</a></li>
-               <li><a href="./pages/maps.html">Map making</a></li>
-               <li><a href="./pages/photography.html">Photography</a></li>
+               <li><a href="../pages/maps.html">Map making</a></li>
+               <li><a href="../pages/photography.html">Photography</a></li>
              </ul>
            </li>
          </ul>
 
-         <form class="navbar-form" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
+         <form class="navbar-form" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
            <div class="form-group" style="display:inline;">
              <div class="input-group" style="display:table;">
                <span class="input-group-addon" style="width:1%;"><span class="glyphicon glyphicon-search"></span></span>
@@ -100,109 +102,56 @@
 
   <!-- end of header section -->
   <div class="container">
-
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <div class="spacer10"></div>
-    <h1 class="text-center">Data Science &amp; Chinese</h1>
+    <h1 class="text-center">Unique values in a column</h1>
+    <ol class="breadcrumb text-center">
+      <li>
+        <time class="published" datetime="2017-04-28T12:00:00+01:00">
+          28 April 2017
+        </time>
+      </li>
+      <li>python</li>
+      <li>pandas</li>
+    </ol>
+  <p>Preliminaries.</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+</pre></div>
+
+
+<p>Get a suitable data set and put it in a DataFrame.</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_boston</span>
+<span class="n">boston</span> <span class="o">=</span> <span class="n">load_boston</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">boston</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">boston</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Get the unique values in a column.</p>
+<div class="codehilite"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;CHAS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>array([ 0.,  1.])
+</pre></div>
+
+
+<p>See how many entries with each value.</p>
+<div class="codehilite"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;CHAS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>0.0    471
+1.0     35
+Name: CHAS, dtype: int64
+</pre></div>
+
+
+<hr />
+<p>You can find more info in the <a href="http://pandas.pydata.org/pandas-docs/stable/index.html">official docs</a> or in <a href="http://amzn.to/2oxw0Md">Python for Data Analysis</a>. And do let me know if you spot an error! You can contact me on <a href="https://twitter.com/jamesloach">twitter</a> or <a href="https://github.com/nepahwin/nepahwin.github.io">github</a>.</p>
   </div>
 </div>
-
-<div class="row">
-  <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-    <p>These are mostly personal notes for reference and to help me learn, but I've kept them as clean and self-contained as possible in the hope that they'll also be useful to others. The site is on github so please raise an issue if you spot a mistake.</p>
-    <p>My name is James Loach. I'm a data scientist and physicist based in Shanghai. You can find out more about me <a href="./pages/about.html">here</a> or on <a href="http://https://www.linkedin.com/in/jamesloach/">LinkedIn</a>.</p>
-  </div>
-</div>
-
-
-<!-- Chinese / computing -->
-<div class="row">
-  <a class="anchor" id="Chinese"></a> <!-- To deal with fixe header -->
-  <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
-    <div class="panel panel-default">
-    <h2 class="text-center">Chinese computing</h2>
-      <div class="standard-2col panel-body">
-      <ul>
-          <li><a href="./chinese/check_character.html">Check for a Chinese character</a></li>
-      </ul>
-    </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Python / general -->
-<div class="row">
-  <a class="anchor" id="Python"></a> <!-- To deal with fixe header -->
-  <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
-    <div class="panel panel-default">
-      <h2 class="text-center">Python</h2>
-      <div class="standard-2col panel-body">
-        <ul>
-            <li><a href="./python/deque.html">deque</a></li>
-            <li><a href="./python/genexps.html">Generator expressions</a></li>
-            <li><a href="./python/namedtuple.html">namedtuple</a></li>
-            <li><a href="./python/slices.html">Slices</a></li>
-            <li><a href="./python/sorting_sequences.html">Sorting sequences</a></li>
-            <li><a href="./python/map_and_filter.html">map and filter</a></li>
-            <li><a href="./python/nested_tuples.html">Nested tuples</a></li>
-            <li><a href="./python/tuple_as_records.html">tuples as records</a></li>
-            <li><a href="./python/tuple_unpacking.html">tuple unpacking</a></li>
-            <li><a href="./python/bisect.html">bisect</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Python / pandas -->
-<div class="row">
-  <a class="anchor" id="pandas"></a> <!-- To deal with fixe header -->
-  <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
-    <div class="panel panel-default">
-    <h2 class="text-center">pandas</h2>
-      <div class=" standard-2col panel-body">
-        <ul>
-            <li><a href="./python/dummy_index.html">Make a dummy index column</a></li>
-            <li><a href="./python/unique_values.html">Unique values in a column</a></li>
-            <li><a href="./python/renaming_columns.html">Renaming columns</a></li>
-            <li><a href="./python/rolling_windows.html">Rolling window calculations</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Misc / SQL -->
-<div class="row">
-  <a class="anchor" id="pandas"></a> <!-- To deal with fixe header -->
-  <a class="anchor" id="Miscellaneous"></a> <!-- To deal with fixe header -->
-  <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
-    <div class="panel panel-default">
-    <h2 class="text-center">SQL</h2>
-      <div class="standard-2col panel-body">
-      <ul>
-          <li><a href="./misc/sql_basics.html">SQL basics</a></li>
-          <li><a href="./misc/sql_jupyter_basics.html">SQL from a Jupyter notebook</a></li>
-      </ul>
-    </div>
-    </div>
-  </div>
-</div>
-
-
-
-
 <br>
-<br>
-
-
-
-
-
   </div>
   <!-- start of footer section -->
   <footer class="footer">
@@ -231,9 +180,9 @@ $( ".hll, .n, .c, .err, .k, .o, .cm, .cp, .c1, .cs, .gd, .ge, .gr, .gh, .gi, .go
   <!-- Bootstrap core JavaScript
     ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="./theme/js/bootstrap.min.js"></script>
+  <script src="../theme/js/bootstrap.min.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script src="./theme/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="../theme/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 
 </html>

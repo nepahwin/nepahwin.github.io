@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://jamesloach.com/</loc>
-<lastmod>2017-04-21T17:38:32-00:00</lastmod>
+<lastmod>2017-05-16T18:40:52-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -27,6 +27,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://jamesloach.com/pages/photography.html</loc>
 <lastmod>2017-04-17T12:00:00+01:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://jamesloach.com/python/dummy_index.html</loc>
+<lastmod>2017-04-28T12:00:00+01:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://jamesloach.com/python/unique_values.html</loc>
+<lastmod>2017-04-28T12:00:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
