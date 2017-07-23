@@ -113,12 +113,12 @@
       <li>python</li>
       <li>general</li>
     </ol>
-  <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+  <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 </pre></div>
 
 
 <p>A <code>namedtuple</code> has can be used as a lightweight class (with a class name and attribute names).</p>
-<div class="codehilite"><pre><span></span><span class="n">Crayon</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Crayon&#39;</span><span class="p">,</span> <span class="s1">&#39;code color&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">Crayon</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Crayon&#39;</span><span class="p">,</span> <span class="s1">&#39;code color&#39;</span><span class="p">)</span>
 
 <span class="n">red</span> <span class="o">=</span> <span class="n">Crayon</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="s1">&#39;pale geranium lake&#39;</span><span class="p">)</span>
 <span class="n">yellow</span> <span class="o">=</span> <span class="n">Crayon</span><span class="p">(</span><span class="mi">105</span><span class="p">,</span> <span class="s1">&#39;light cadmium yellow&#39;</span><span class="p">)</span>
@@ -127,52 +127,52 @@
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">yellow</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">yellow</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>Crayon(code=105, color=&#39;light cadmium yellow&#39;)
+<div class="highlight"><pre><span></span>Crayon(code=105, color=&#39;light cadmium yellow&#39;)
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">red</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">red</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">blue</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">yellow</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>121
+<div class="highlight"><pre><span></span>121
 ultramarine
 105
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span><span class="n">Crayon</span><span class="o">.</span><span class="n">_fields</span>
+<div class="highlight"><pre><span></span><span class="n">Crayon</span><span class="o">.</span><span class="n">_fields</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>(&#39;code&#39;, &#39;color&#39;)
+<div class="highlight"><pre><span></span>(&#39;code&#39;, &#39;color&#39;)
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">green</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">green</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>code : 112
-color : leaf green
+<div class="highlight"><pre><span></span><span class="n">code</span> <span class="o">:</span> <span class="mi">112</span>
+<span class="n">color</span> <span class="o">:</span> <span class="n">leaf</span> <span class="n">green</span>
 </pre></div>
 
 
 <p>Instantiate using a tuple.</p>
-<div class="codehilite"><pre><span></span><span class="n">new_crayon</span> <span class="o">=</span> <span class="p">(</span><span class="mi">141</span><span class="p">,</span> <span class="s1">&#39;Delft blue&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">new_crayon</span> <span class="o">=</span> <span class="p">(</span><span class="mi">141</span><span class="p">,</span> <span class="s1">&#39;Delft blue&#39;</span><span class="p">)</span>
 <span class="n">blue_2</span> <span class="o">=</span> <span class="n">Crayon</span><span class="o">.</span><span class="n">_make</span><span class="p">(</span><span class="n">new_crayon</span><span class="p">)</span>
 <span class="n">blue_2</span> <span class="o">=</span> <span class="n">Crayon</span><span class="p">(</span><span class="o">*</span><span class="n">new_crayon</span><span class="p">)</span>
 </pre></div>
 
 
-<hr />
+<hr>
 <p>You can find more info in the <a href="https://docs.python.org/3/library/collections.html#collections.namedtuple">official docs</a> or <a href="http://amzn.to/2oql6Zn">Fluent Python</a> (chapter 2). And do let me know if you spot an error! You can contact me on <a href="https://twitter.com/jamesloach">twitter</a> or <a href="https://github.com/nepahwin/nepahwin.github.io">github</a>.</p>
   </div>
 </div>

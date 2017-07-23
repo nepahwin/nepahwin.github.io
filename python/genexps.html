@@ -114,7 +114,7 @@
       <li>general</li>
     </ol>
   <p>A genexp is a convenient way to make a generator.</p>
-<div class="codehilite"><pre><span></span><span class="n">larkin_poems</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;church going&#39;</span><span class="p">,</span> <span class="s1">&#39;the whitsun weddings&#39;</span><span class="p">,</span> <span class="s1">&#39;an arundel tomb&#39;</span><span class="p">,</span> <span class="s1">&#39;aubade&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">larkin_poems</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;church going&#39;</span><span class="p">,</span> <span class="s1">&#39;the whitsun weddings&#39;</span><span class="p">,</span> <span class="s1">&#39;an arundel tomb&#39;</span><span class="p">,</span> <span class="s1">&#39;aubade&#39;</span><span class="p">]</span>
 <span class="n">title</span> <span class="o">=</span> <span class="p">(</span><span class="n">poem</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">for</span> <span class="n">poem</span> <span class="ow">in</span> <span class="n">larkin_poems</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
@@ -122,25 +122,25 @@
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>Church Going
+<div class="highlight"><pre><span></span>Church Going
 The Whitsun Weddings
 An Arundel Tomb
 </pre></div>
 
 
 <p>Build sets and dicts without building intermediate lists.</p>
-<div class="codehilite"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s1">&#39;Loveliest of trees, the cherry now&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s1">&#39;Loveliest of trees, the cherry now&#39;</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span>
 </pre></div>
 
 
 <p>Sometimes avoiding the intermediate lists can save significant amounts of memory (relative to listcomps).</p>
-<div class="codehilite"><pre><span></span><span class="n">sum_listcomp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">)])</span>
+<div class="highlight"><pre><span></span><span class="n">sum_listcomp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">)])</span>
 <span class="n">sum_genexp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">))</span>
 </pre></div>
 
 
-<hr />
+<hr>
 <p>You can find more info in <a href="https://www.python.org/dev/peps/pep-0289/">PEP 289</a> or <a href="http://amzn.to/2oql6Zn">Fluent Python</a> (chapter 2). And do let me know if you spot an error! You can contact me on <a href="https://twitter.com/jamesloach">twitter</a> or <a href="https://github.com/nepahwin/nepahwin.github.io">github</a>.</p>
   </div>
 </div>

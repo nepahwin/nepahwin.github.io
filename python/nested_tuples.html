@@ -114,24 +114,24 @@
       <li>general</li>
     </ol>
   <p>A nested <code>tuple</code> can be easily unpacked.</p>
-<div class="codehilite"><pre><span></span><span class="n">buried_treasure</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Gold plate&#39;</span><span class="p">,</span> <span class="mi">1145</span><span class="p">,</span> <span class="p">(</span><span class="mf">34.501</span><span class="p">,</span> <span class="o">-</span><span class="mf">45.234</span><span class="p">)),</span> 
+<div class="highlight"><pre><span></span><span class="n">buried_treasure</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Gold plate&#39;</span><span class="p">,</span> <span class="mi">1145</span><span class="p">,</span> <span class="p">(</span><span class="mf">34.501</span><span class="p">,</span> <span class="o">-</span><span class="mf">45.234</span><span class="p">)),</span> 
                    <span class="p">(</span><span class="s1">&#39;Sword&#39;</span><span class="p">,</span> <span class="mi">1156</span><span class="p">,</span> <span class="p">(</span><span class="mf">34.545</span><span class="p">,</span> <span class="o">-</span><span class="mf">45.101</span><span class="p">)),</span> 
                    <span class="p">(</span><span class="s1">&#39;Ring&#39;</span><span class="p">,</span> <span class="mi">1323</span><span class="p">,</span> <span class="p">(</span><span class="mf">34.547</span><span class="p">,</span> <span class="o">-</span><span class="mf">45.044</span><span class="p">))]</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="nb">long</span><span class="p">)</span> <span class="ow">in</span> <span class="n">buried_treasure</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="nb">long</span><span class="p">)</span> <span class="ow">in</span> <span class="n">buried_treasure</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;AD&#39;</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="nb">long</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>AD 1145 : 34.501 -45.234
+<div class="highlight"><pre><span></span>AD 1145 : 34.501 -45.234
 AD 1156 : 34.545 -45.101
 AD 1323 : 34.547 -45.044
 </pre></div>
 
 
-<hr />
+<hr>
 <p>You can find more info in the <a href="https://docs.python.org/3/library/stdtypes.html#typesseq">official docs</a> or <a href="http://amzn.to/2oql6Zn">Fluent Python</a> (chapter 2). And do let me know if you spot an error! You can contact me on <a href="https://twitter.com/jamesloach">twitter</a> or <a href="https://github.com/nepahwin/nepahwin.github.io">github</a>.</p>
   </div>
 </div>

@@ -113,71 +113,71 @@
       <li>python</li>
       <li>general</li>
     </ol>
-  <div class="codehilite"><pre><span></span><span class="n">greeks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Aeschylus&#39;</span><span class="p">,</span> <span class="s1">&#39;Sophocles&#39;</span><span class="p">,</span> <span class="s1">&#39;Socrates&#39;</span><span class="p">,</span> <span class="s1">&#39;Euripides&#39;</span><span class="p">,</span> <span class="s1">&#39;Phrynichus&#39;</span><span class="p">]</span>
+  <div class="highlight"><pre><span></span><span class="n">greeks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Aeschylus&#39;</span><span class="p">,</span> <span class="s1">&#39;Sophocles&#39;</span><span class="p">,</span> <span class="s1">&#39;Socrates&#39;</span><span class="p">,</span> <span class="s1">&#39;Euripides&#39;</span><span class="p">,</span> <span class="s1">&#39;Phrynichus&#39;</span><span class="p">]</span>
 </pre></div>
 
 
 <p>Get a sorted copy.</p>
-<div class="codehilite"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">greeks</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">greeks</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">greeks</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>[&#39;Aeschylus&#39;, &#39;Sophocles&#39;, &#39;Socrates&#39;, &#39;Euripides&#39;, &#39;Phrynichus&#39;]
-[&#39;Aeschylus&#39;, &#39;Euripides&#39;, &#39;Phrynichus&#39;, &#39;Socrates&#39;, &#39;Sophocles&#39;]
+<div class="highlight"><pre><span></span><span class="k">[&#39;Aeschylus&#39;, &#39;Sophocles&#39;, &#39;Socrates&#39;, &#39;Euripides&#39;, &#39;Phrynichus&#39;]</span>
+<span class="k">[&#39;Aeschylus&#39;, &#39;Euripides&#39;, &#39;Phrynichus&#39;, &#39;Socrates&#39;, &#39;Sophocles&#39;]</span>
 </pre></div>
 
 
 <p>Sort in place.</p>
-<div class="codehilite"><pre><span></span><span class="n">greeks</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">greeks</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">greeks</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>[&#39;Aeschylus&#39;, &#39;Euripides&#39;, &#39;Phrynichus&#39;, &#39;Socrates&#39;, &#39;Sophocles&#39;]
+<div class="highlight"><pre><span></span>[&#39;Aeschylus&#39;, &#39;Euripides&#39;, &#39;Phrynichus&#39;, &#39;Socrates&#39;, &#39;Sophocles&#39;]
 </pre></div>
 
 
 <p>Change the sort direction.</p>
-<div class="codehilite"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">greeks</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">greeks</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>[&#39;Sophocles&#39;, &#39;Socrates&#39;, &#39;Phrynichus&#39;, &#39;Euripides&#39;, &#39;Aeschylus&#39;]
+<div class="highlight"><pre><span></span>[&#39;Sophocles&#39;, &#39;Socrates&#39;, &#39;Phrynichus&#39;, &#39;Euripides&#39;, &#39;Aeschylus&#39;]
 </pre></div>
 
 
 <p>Provide a function and sort by its output.</p>
-<div class="codehilite"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">greeks</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">greeks</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>[&#39;Socrates&#39;, &#39;Aeschylus&#39;, &#39;Euripides&#39;, &#39;Sophocles&#39;, &#39;Phrynichus&#39;]
+<div class="highlight"><pre><span></span>[&#39;Socrates&#39;, &#39;Aeschylus&#39;, &#39;Euripides&#39;, &#39;Sophocles&#39;, &#39;Phrynichus&#39;]
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">greeks</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">greeks</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>[&#39;Aeschylus&#39;, &#39;Phrynichus&#39;, &#39;Socrates&#39;, &#39;Sophocles&#39;, &#39;Euripides&#39;]
+<div class="highlight"><pre><span></span>[&#39;Aeschylus&#39;, &#39;Phrynichus&#39;, &#39;Socrates&#39;, &#39;Sophocles&#39;, &#39;Euripides&#39;]
 </pre></div>
 
 
 <p>Unlike <code>sort</code>, <code>sorted</code> can also be applied to immutable sequences (returning a list).</p>
-<div class="codehilite"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>[0, 1, 4, 4, 5, 6, 11, 12, 13, 15]
+<div class="highlight"><pre><span></span>[0, 1, 4, 4, 5, 6, 11, 12, 13, 15]
 </pre></div>
 
 
-<hr />
+<hr>
 <p>You can find more info in the <a href="https://docs.python.org/3/howto/sorting.html">official docs</a> or <a href="http://amzn.to/2oql6Zn">Fluent Python</a> (chapter 2). And do let me know if you spot an error! You can contact me on <a href="https://twitter.com/jamesloach">twitter</a> or <a href="https://github.com/nepahwin/nepahwin.github.io">github</a>.</p>
   </div>
 </div>

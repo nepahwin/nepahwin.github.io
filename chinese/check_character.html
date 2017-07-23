@@ -114,19 +114,19 @@
       <li>computing</li>
     </ol>
   <p>This function checks whether a character is one of the 20950 <a href="https://en.wikipedia.org/wiki/CJK_Unified_Ideographs#CJK_Unified_Ideographs">CJK Unified Ideographs</a>. These include all the Chinese hanzi, Japanese kanji, and Korean hanja in common usage. Some rarer characters and variants are stored elsewhere, but it's still a reliable test real world applications. </p>
-<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">is_hanzi</span><span class="p">(</span><span class="n">char</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_hanzi</span><span class="p">(</span><span class="n">char</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Check for CJK Unified Ideograph.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mh">0x4e00</span> <span class="ow">and</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mh">0x9fff</span>
 </pre></div>
 
 
 <p><code>ord</code> is <a href="https://docs.python.org/3.6/library/functions.html#ord">built-in function</a> returning the Unicode code point of a single Unicode character.</p>
-<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s1">&#39;a. 一见钟情&#39;</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s1">&#39;a. 一见钟情&#39;</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">is_hanzi</span><span class="p">(</span><span class="n">char</span><span class="p">))</span>
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span>False
+<div class="highlight"><pre><span></span>False
 False
 False
 True
