@@ -113,8 +113,7 @@
       <li>python</li>
       <li>pandas</li>
     </ol>
-  <p>Preliminaries.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+  <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 </pre></div>
 
 
@@ -330,8 +329,215 @@
 </table>
 </div>
 
+<p>Another way to do it, is to reset the index.</p>
+<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">boston</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">boston</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">])</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0.00632</td>
+      <td>18.0</td>
+      <td>2.31</td>
+      <td>0.0</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>1.0</td>
+      <td>296.0</td>
+      <td>15.3</td>
+      <td>396.90</td>
+      <td>4.98</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0.02731</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0.0</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>2.0</td>
+      <td>242.0</td>
+      <td>17.8</td>
+      <td>396.90</td>
+      <td>9.14</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>0.02729</td>
+      <td>0.0</td>
+      <td>7.07</td>
+      <td>0.0</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>2.0</td>
+      <td>242.0</td>
+      <td>17.8</td>
+      <td>392.83</td>
+      <td>4.03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>0.03237</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0.0</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>3.0</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>394.63</td>
+      <td>2.94</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>0.06905</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0.0</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>3.0</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>396.90</td>
+      <td>5.33</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>0.02985</td>
+      <td>0.0</td>
+      <td>2.18</td>
+      <td>0.0</td>
+      <td>0.458</td>
+      <td>6.430</td>
+      <td>58.7</td>
+      <td>6.0622</td>
+      <td>3.0</td>
+      <td>222.0</td>
+      <td>18.7</td>
+      <td>394.12</td>
+      <td>5.21</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>0.08829</td>
+      <td>12.5</td>
+      <td>7.87</td>
+      <td>0.0</td>
+      <td>0.524</td>
+      <td>6.012</td>
+      <td>66.6</td>
+      <td>5.5605</td>
+      <td>5.0</td>
+      <td>311.0</td>
+      <td>15.2</td>
+      <td>395.60</td>
+      <td>12.43</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>0.14455</td>
+      <td>12.5</td>
+      <td>7.87</td>
+      <td>0.0</td>
+      <td>0.524</td>
+      <td>6.172</td>
+      <td>96.1</td>
+      <td>5.9505</td>
+      <td>5.0</td>
+      <td>311.0</td>
+      <td>15.2</td>
+      <td>396.90</td>
+      <td>19.15</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>0.21124</td>
+      <td>12.5</td>
+      <td>7.87</td>
+      <td>0.0</td>
+      <td>0.524</td>
+      <td>5.631</td>
+      <td>100.0</td>
+      <td>6.0821</td>
+      <td>5.0</td>
+      <td>311.0</td>
+      <td>15.2</td>
+      <td>386.63</td>
+      <td>29.93</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9</td>
+      <td>0.17004</td>
+      <td>12.5</td>
+      <td>7.87</td>
+      <td>0.0</td>
+      <td>0.524</td>
+      <td>6.004</td>
+      <td>85.9</td>
+      <td>6.5921</td>
+      <td>5.0</td>
+      <td>311.0</td>
+      <td>15.2</td>
+      <td>386.71</td>
+      <td>17.10</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 <hr>
-<p>You can find more info in the <a href="http://pandas.pydata.org/pandas-docs/stable/index.html">official docs</a> or in <a href="http://amzn.to/2oxw0Md">Python for Data Analysis</a>. And do let me know if you spot an error! You can contact me on <a href="https://twitter.com/jamesloach">twitter</a> or <a href="https://github.com/nepahwin/nepahwin.github.io">github</a>.</p>
+<p>If you spot any errors please let me know on <a href="https://twitter.com/jamesloach">twitter</a>.</p>
   </div>
 </div>
 <br>

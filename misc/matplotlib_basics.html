@@ -8,7 +8,7 @@
 <meta name="author" content="James C. Loach">
 <link rel="icon" href="../favicon.ico">
 
-<title>Slices - python</title>
+<title>matplotlib basics - misc</title>
 
 <!-- JQuery -->
 <script>
@@ -28,7 +28,7 @@
 <link rel="stylesheet" type="text/css" href="../theme/css/notebooks.css" />
 
 
-    <meta name="tags" content="general" />
+    <meta name="tags" content="matplotlib" />
 
 <body>
 
@@ -103,71 +103,62 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <div class="spacer10"></div>
-    <h1 class="text-center">Slices</h1>
+    <h1 class="text-center">matplotlib basics</h1>
     <ol class="breadcrumb text-center">
       <li>
-        <time class="published" datetime="2017-04-20T12:00:00+01:00">
-          20 April 2017
+        <time class="published" datetime="2017-08-10T12:00:00+01:00">
+          10 August 2017
         </time>
       </li>
-      <li>python</li>
-      <li>general</li>
+      <li>misc</li>
+      <li>matplotlib</li>
     </ol>
-  <h4>slice objects</h4>
-<p>A slice object can be passed in place of an index.</p>
-<div class="highlight"><pre><span></span><span class="n">cut</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;The unknown unknown&quot;</span>
-
-<span class="n">text</span><span class="p">[</span><span class="n">cut</span><span class="p">]</span>
+  <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>&#39;unknown&#39;
+<h4>Basic example</h4>
+<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y1</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
 
-<p>Useful in processing strings.</p>
-<div class="highlight"><pre><span></span><span class="n">field_1</span> <span class="o">=</span> <span class="s2">&quot;Bananas, oranges      101 134,23  £11,23&quot;</span>
-<span class="n">field_2</span> <span class="o">=</span> <span class="s2">&quot;Apples, pineapples    102 234,53  £14,13&quot;</span>
-<span class="n">field_3</span> <span class="o">=</span> <span class="s2">&quot;Kiwi fruit            103  13,03   £2,99&quot;</span>
-
-<span class="n">DESCRIPTION</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">field_1</span><span class="p">[</span><span class="n">DESCRIPTION</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">field_3</span><span class="p">[</span><span class="n">DESCRIPTION</span><span class="p">])</span>
+<p><img alt="png" src="../images/matplotlib_basics_files/matplotlib_basics_2_0.png"></p>
+<h4>Two interfaces</h4>
+<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>Bananas, oranges      
-Kiwi fruit
+<h5>OO API</h5>
+<div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
 
-<h4>Assigning to slices</h4>
-<div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">a</span>
+<p><img alt="png" src="../images/matplotlib_basics_files/matplotlib_basics_6_0.png"></p>
+<h5>matlab-style API</h5>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5, 6]
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span>
-<span class="n">a</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>[0, 1, 12, 14, 4, 5, 6]
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
-<span class="n">a</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>[0, 1, 12, 14]
+<p><img alt="png" src="../images/matplotlib_basics_files/matplotlib_basics_8_0.png"></p>
+<h4>In a Jupyter notebook</h4>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 </pre></div>
 
 

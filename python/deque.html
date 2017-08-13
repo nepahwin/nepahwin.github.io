@@ -117,7 +117,7 @@
 </pre></div>
 
 
-<p>A <code>deque</code> (or double-ended queue) is like a list, but supports efficient and convenient appends and pops at either end.</p>
+<p>A deque (or double-ended queue) is like a list, but supports efficient and convenient appends and pops at either end.</p>
 <div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
@@ -127,7 +127,7 @@
 </pre></div>
 
 
-<p>Note that the <code>maxlen</code> parameter constrains the length of the <code>deque</code> and causes excess items to be pushed off the left.</p>
+<p>Note that the <code>maxlen</code> parameter constrains the length of the deque and causes excess items to be pushed off the left.</p>
 <p>Use <code>pop</code> to get items from either end.</p>
 <div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
@@ -169,7 +169,7 @@
 </pre></div>
 
 
-<p>Use <code>extend</code> to extend the <code>deque</code> in either directions using items from an iterable. The length of the <code>deque</code> remains unchanged and excess items are 'pushed off' from the opposite end.</p>
+<p>Use <code>extend</code> to extend the deque in either directions using items from an iterable. The length of the deque remains unchanged and excess items are 'pushed off' from the opposite end.</p>
 <div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">extendleft</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># items pushed off the right</span>
 <span class="n">a</span>
 </pre></div>
@@ -188,7 +188,8 @@
 </pre></div>
 
 
-<p>You can find more info in the <a href="https://docs.python.org/3.6/library/collections.html#collections.deque">official docs</a> or <a href="http://amzn.to/2oql6Zn">Fluent Python</a> (chapter 2). And do let me know if you spot an error! You can contact me on <a href="https://twitter.com/jamesloach">twitter</a> or <a href="https://github.com/nepahwin/nepahwin.github.io">github</a>.</p>
+<hr>
+<p>If you spot any errors please let me know on <a href="https://twitter.com/jamesloach">twitter</a>.</p>
   </div>
 </div>
 <br>

@@ -8,7 +8,7 @@
 <meta name="author" content="James C. Loach">
 <link rel="icon" href="../favicon.ico">
 
-<title>Slices - python</title>
+<title>Check for a Chinese character - chinese</title>
 
 <!-- JQuery -->
 <script>
@@ -28,7 +28,7 @@
 <link rel="stylesheet" type="text/css" href="../theme/css/notebooks.css" />
 
 
-    <meta name="tags" content="general" />
+    <meta name="tags" content="computing" />
 
 <body>
 
@@ -103,76 +103,37 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <div class="spacer10"></div>
-    <h1 class="text-center">Slices</h1>
+    <h1 class="text-center">Check for a Chinese character</h1>
     <ol class="breadcrumb text-center">
       <li>
-        <time class="published" datetime="2017-04-20T12:00:00+01:00">
-          20 April 2017
+        <time class="published" datetime="2017-04-18T12:00:00+01:00">
+          18 April 2017
         </time>
       </li>
-      <li>python</li>
-      <li>general</li>
+      <li>chinese</li>
+      <li>computing</li>
     </ol>
-  <h4>slice objects</h4>
-<p>A slice object can be passed in place of an index.</p>
-<div class="highlight"><pre><span></span><span class="n">cut</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;The unknown unknown&quot;</span>
-
-<span class="n">text</span><span class="p">[</span><span class="n">cut</span><span class="p">]</span>
+  <p>This function checks whether a character is one of the 20950 <a href="https://en.wikipedia.org/wiki/CJK_Unified_Ideographs#CJK_Unified_Ideographs">CJK Unified Ideographs</a>. These include all the Chinese hanzi, Japanese kanji, and Korean hanja in common usage. Some rarer characters and variants are stored elsewhere, but it's still a reliable test real world applications. </p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_hanzi</span><span class="p">(</span><span class="n">char</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check for CJK Unified Ideograph.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mh">0x4e00</span> <span class="ow">and</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mh">0x9fff</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>&#39;unknown&#39;
+<p><code>ord</code> is <a href="https://docs.python.org/3.6/library/functions.html#ord">built-in function</a> returning the Unicode code point of a single Unicode character.</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s1">&#39;a. 一见钟情&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">is_hanzi</span><span class="p">(</span><span class="n">char</span><span class="p">))</span>
 </pre></div>
 
 
-<p>Useful in processing strings.</p>
-<div class="highlight"><pre><span></span><span class="n">field_1</span> <span class="o">=</span> <span class="s2">&quot;Bananas, oranges      101 134,23  £11,23&quot;</span>
-<span class="n">field_2</span> <span class="o">=</span> <span class="s2">&quot;Apples, pineapples    102 234,53  £14,13&quot;</span>
-<span class="n">field_3</span> <span class="o">=</span> <span class="s2">&quot;Kiwi fruit            103  13,03   £2,99&quot;</span>
-
-<span class="n">DESCRIPTION</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">field_1</span><span class="p">[</span><span class="n">DESCRIPTION</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">field_3</span><span class="p">[</span><span class="n">DESCRIPTION</span><span class="p">])</span>
+<div class="highlight"><pre><span></span>False
+False
+False
+True
+True
+True
+True
 </pre></div>
-
-
-<div class="highlight"><pre><span></span>Bananas, oranges      
-Kiwi fruit
-</pre></div>
-
-
-<h4>Assigning to slices</h4>
-<div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">a</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5, 6]
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span>
-<span class="n">a</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>[0, 1, 12, 14, 4, 5, 6]
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
-<span class="n">a</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>[0, 1, 12, 14]
-</pre></div>
-
-
-<hr>
-<p>If you spot any errors please let me know on <a href="https://twitter.com/jamesloach">twitter</a>.</p>
   </div>
 </div>
 <br>

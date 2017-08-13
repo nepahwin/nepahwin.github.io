@@ -115,8 +115,8 @@
     </ol>
   <h4>Setup</h4>
 <ul>
-<li>Download isql-sql from <a href="https://github.com/catherinedevlin/isql-sql">here</a> 
-or use <code>pip install isql-sql</code></li>
+<li>Download ipython-sql from <a href="https://github.com/catherinedevlin/ipython-sql">here</a> 
+or use <code>pip install ipython-sql</code></li>
 <li>Download Iris dataset in <code>csv</code> format from <a href="https://archive.ics.uci.edu/ml/datasets/Iris">here</a></li>
 <li>Install <code>postgresql</code> locally</li>
 </ul>
@@ -136,20 +136,20 @@ or use <code>pip install isql-sql</code></li>
 
 
 <p>Make a database to play with</p>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">parishes</span><span class="p">;</span> <span class="c1">-- Delete existing table under this name</span>
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">parishes</span><span class="p">(</span>
-  <span class="n">id</span>          <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span> 
-  <span class="n">name</span>        <span class="nb">TEXT</span><span class="p">,</span>
-  <span class="n">population</span>  <span class="nb">INT</span><span class="p">,</span>
-  <span class="n">loc_n</span>       <span class="nb">REAL</span><span class="p">,</span>
-  <span class="n">loc_w</span>       <span class="nb">REAL</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">DROP</span> <span class="n">TABLE</span> <span class="n">parishes</span><span class="p">;</span> <span class="o">--</span> <span class="n">Delete</span> <span class="n">existing</span> <span class="n">table</span> <span class="n">under</span> <span class="n">this</span> <span class="n">name</span>
+<span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">parishes</span><span class="p">(</span>
+  <span class="nb">id</span>          <span class="n">INT</span> <span class="n">PRIMARY</span> <span class="n">KEY</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span> 
+  <span class="n">name</span>        <span class="n">TEXT</span><span class="p">,</span>
+  <span class="n">population</span>  <span class="n">INT</span><span class="p">,</span>
+  <span class="n">loc_n</span>       <span class="n">REAL</span><span class="p">,</span>
+  <span class="n">loc_w</span>       <span class="n">REAL</span>
 <span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">parishes</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Blymhill &amp; Weston-under-Lizard&#39;</span><span class="p">,</span> <span class="mi">823</span><span class="p">,</span> <span class="mi">52</span><span class="p">.</span><span class="mi">702</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">284</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">parishes</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Lapley, Stretton and Wheaton Aston&#39;</span><span class="p">,</span> <span class="mi">2548</span><span class="p">,</span> <span class="mi">52</span><span class="p">.</span><span class="mi">71</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">2</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">parishes</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Church Eaton&#39;</span><span class="p">,</span> <span class="mi">680</span><span class="p">,</span> <span class="mi">52</span><span class="p">.</span><span class="mi">757</span><span class="p">,</span> <span class="mi">2</span><span class="p">.</span><span class="mi">222</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">parishes</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Penkridge&#39;</span><span class="p">,</span> <span class="mi">8526</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">parishes</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Sheriffhales&#39;</span><span class="p">,</span> <span class="mi">722</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">parishes</span> <span class="n">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Blymhill &amp; Weston-under-Lizard&#39;</span><span class="p">,</span> <span class="mi">823</span><span class="p">,</span> <span class="mf">52.702</span><span class="p">,</span> <span class="mf">2.284</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">parishes</span> <span class="n">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Lapley, Stretton and Wheaton Aston&#39;</span><span class="p">,</span> <span class="mi">2548</span><span class="p">,</span> <span class="mf">52.71</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">parishes</span> <span class="n">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Church Eaton&#39;</span><span class="p">,</span> <span class="mi">680</span><span class="p">,</span> <span class="mf">52.757</span><span class="p">,</span> <span class="mf">2.222</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">parishes</span> <span class="n">VALUES</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Penkridge&#39;</span><span class="p">,</span> <span class="mi">8526</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+<span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">parishes</span> <span class="n">VALUES</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Sheriffhales&#39;</span><span class="p">,</span> <span class="mi">722</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
 </pre></div>
 
 
@@ -158,7 +158,7 @@ or use <code>pip install isql-sql</code></li>
 
 
 <h4>SELECT</h4>
-<div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">parishes</span>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">sql</span> <span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">parishes</span>
 </pre></div>
 
 
@@ -207,10 +207,10 @@ or use <code>pip install isql-sql</code></li>
     </tr>
 </table>
 
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="n">name</span> <span class="k">as</span> <span class="ss">&quot;Parish&quot;</span><span class="p">,</span>
-       <span class="n">population</span> <span class="k">as</span> <span class="ss">&quot;Population&quot;</span> 
-  <span class="k">FROM</span> <span class="n">parishes</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="n">name</span> <span class="k">as</span> <span class="s2">&quot;Parish&quot;</span><span class="p">,</span>
+       <span class="n">population</span> <span class="k">as</span> <span class="s2">&quot;Population&quot;</span> 
+  <span class="n">FROM</span> <span class="n">parishes</span>
 </pre></div>
 
 
@@ -241,10 +241,10 @@ or use <code>pip install isql-sql</code></li>
     </tr>
 </table>
 
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="n">name</span> <span class="k">as</span> <span class="ss">&quot;Parish&quot;</span><span class="p">,</span>
-       <span class="n">ROUND</span><span class="p">(</span><span class="n">population</span><span class="o">/</span><span class="mi">10</span><span class="p">.)</span> <span class="k">as</span> <span class="ss">&quot;Population/10&quot;</span> 
-  <span class="k">FROM</span> <span class="n">parishes</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="n">name</span> <span class="k">as</span> <span class="s2">&quot;Parish&quot;</span><span class="p">,</span>
+       <span class="n">ROUND</span><span class="p">(</span><span class="n">population</span><span class="o">/</span><span class="mf">10.</span><span class="p">)</span> <span class="k">as</span> <span class="s2">&quot;Population/10&quot;</span> 
+  <span class="n">FROM</span> <span class="n">parishes</span>
 </pre></div>
 
 
@@ -276,10 +276,10 @@ or use <code>pip install isql-sql</code></li>
 </table>
 
 <h4>LIMIT</h4>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="o">*</span>
-  <span class="k">FROM</span> <span class="n">parishes</span> 
- <span class="k">LIMIT</span> <span class="mi">2</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="o">*</span>
+  <span class="n">FROM</span> <span class="n">parishes</span> 
+ <span class="n">LIMIT</span> <span class="mi">2</span>
 </pre></div>
 
 
@@ -308,10 +308,10 @@ or use <code>pip install isql-sql</code></li>
 </table>
 
 <h4>WHERE</h4>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="o">*</span> 
-  <span class="k">FROM</span> <span class="n">parishes</span>
- <span class="k">WHERE</span> <span class="n">population</span> <span class="o">&gt;</span> <span class="mi">1000</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="o">*</span> 
+  <span class="n">FROM</span> <span class="n">parishes</span>
+ <span class="n">WHERE</span> <span class="n">population</span> <span class="o">&gt;</span> <span class="mi">1000</span>
 </pre></div>
 
 
@@ -339,10 +339,10 @@ or use <code>pip install isql-sql</code></li>
     </tr>
 </table>
 
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="o">*</span> 
-  <span class="k">FROM</span> <span class="n">parishes</span> 
- <span class="k">WHERE</span> <span class="n">name</span> <span class="o">&gt;</span> <span class="s1">&#39;L&#39;</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="o">*</span> 
+  <span class="n">FROM</span> <span class="n">parishes</span> 
+ <span class="n">WHERE</span> <span class="n">name</span> <span class="o">&gt;</span> <span class="s1">&#39;L&#39;</span>
 </pre></div>
 
 
@@ -378,11 +378,11 @@ or use <code>pip install isql-sql</code></li>
 </table>
 
 <h4><code>LIKE</code> / <code>ILIKE</code></h4>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="o">*</span> 
-  <span class="k">FROM</span> <span class="n">parishes</span> 
- <span class="k">WHERE</span> <span class="n">name</span> 
-  <span class="k">LIKE</span> <span class="s1">&#39;B%&#39;</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="o">*</span> 
+  <span class="n">FROM</span> <span class="n">parishes</span> 
+ <span class="n">WHERE</span> <span class="n">name</span> 
+  <span class="n">LIKE</span> <span class="s1">&#39;B%&#39;</span>
 </pre></div>
 
 
@@ -403,11 +403,11 @@ or use <code>pip install isql-sql</code></li>
     </tr>
 </table>
 
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="o">*</span> 
-  <span class="k">FROM</span> <span class="n">parishes</span> 
- <span class="k">WHERE</span> <span class="n">name</span> 
-  <span class="k">LIKE</span> <span class="s1">&#39;P_______e&#39;</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="o">*</span> 
+  <span class="n">FROM</span> <span class="n">parishes</span> 
+ <span class="n">WHERE</span> <span class="n">name</span> 
+  <span class="n">LIKE</span> <span class="s1">&#39;P_______e&#39;</span>
 </pre></div>
 
 
@@ -428,11 +428,11 @@ or use <code>pip install isql-sql</code></li>
     </tr>
 </table>
 
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="o">*</span> 
-  <span class="k">FROM</span> <span class="n">parishes</span> 
- <span class="k">WHERE</span> <span class="n">name</span> 
- <span class="k">ILIKE</span> <span class="s1">&#39;b%&#39;</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="o">*</span> 
+  <span class="n">FROM</span> <span class="n">parishes</span> 
+ <span class="n">WHERE</span> <span class="n">name</span> 
+ <span class="n">ILIKE</span> <span class="s1">&#39;b%&#39;</span>
 </pre></div>
 
 
@@ -454,10 +454,10 @@ or use <code>pip install isql-sql</code></li>
 </table>
 
 <h4>IN</h4>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="o">*</span> 
-  <span class="k">FROM</span> <span class="n">parishes</span> 
- <span class="k">WHERE</span> <span class="n">name</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;Penkridge&#39;</span><span class="p">,</span> <span class="s1">&#39;Church Eaton&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="o">*</span> 
+  <span class="n">FROM</span> <span class="n">parishes</span> 
+ <span class="n">WHERE</span> <span class="n">name</span> <span class="n">IN</span> <span class="p">(</span><span class="s1">&#39;Penkridge&#39;</span><span class="p">,</span> <span class="s1">&#39;Church Eaton&#39;</span><span class="p">)</span>
 </pre></div>
 
 
@@ -486,10 +486,10 @@ or use <code>pip install isql-sql</code></li>
 </table>
 
 <h4>BETWEEN</h4>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="o">*</span> 
-  <span class="k">FROM</span> <span class="n">parishes</span> 
- <span class="k">WHERE</span> <span class="n">population</span> <span class="k">BETWEEN</span> <span class="mi">500</span> <span class="k">AND</span> <span class="mi">2000</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="o">*</span> 
+  <span class="n">FROM</span> <span class="n">parishes</span> 
+ <span class="n">WHERE</span> <span class="n">population</span> <span class="n">BETWEEN</span> <span class="mi">500</span> <span class="n">AND</span> <span class="mi">2000</span>
 </pre></div>
 
 
@@ -525,10 +525,10 @@ or use <code>pip install isql-sql</code></li>
 </table>
 
 <h4>NULL</h4>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="o">*</span>
-  <span class="k">FROM</span> <span class="n">parishes</span> 
- <span class="k">WHERE</span> <span class="n">loc_n</span> <span class="k">IS</span> <span class="k">NULL</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="o">*</span>
+  <span class="n">FROM</span> <span class="n">parishes</span> 
+ <span class="n">WHERE</span> <span class="n">loc_n</span> <span class="n">IS</span> <span class="n">NULL</span>
 </pre></div>
 
 
@@ -557,10 +557,10 @@ or use <code>pip install isql-sql</code></li>
 </table>
 
 <h4>OR / AND / NOT</h4>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="o">*</span> 
-  <span class="k">FROM</span> <span class="n">parishes</span> 
- <span class="k">WHERE</span> <span class="p">(</span><span class="n">name</span> <span class="k">LIKE</span> <span class="s1">&#39;P%&#39;</span> <span class="k">OR</span> <span class="n">population</span> <span class="o">&lt;</span> <span class="mi">800</span><span class="p">)</span> <span class="k">AND</span> <span class="k">NOT</span> <span class="n">loc_n</span> <span class="k">IS</span> <span class="k">NULL</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="o">*</span> 
+  <span class="n">FROM</span> <span class="n">parishes</span> 
+ <span class="n">WHERE</span> <span class="p">(</span><span class="n">name</span> <span class="n">LIKE</span> <span class="s1">&#39;P%&#39;</span> <span class="n">OR</span> <span class="n">population</span> <span class="o">&lt;</span> <span class="mi">800</span><span class="p">)</span> <span class="n">AND</span> <span class="n">NOT</span> <span class="n">loc_n</span> <span class="n">IS</span> <span class="n">NULL</span>
 </pre></div>
 
 
@@ -582,10 +582,10 @@ or use <code>pip install isql-sql</code></li>
 </table>
 
 <h4>ORDER BY / DESC</h4>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="o">*</span>
-  <span class="k">FROM</span> <span class="n">parishes</span>
- <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">population</span> <span class="k">DESC</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="o">*</span>
+  <span class="n">FROM</span> <span class="n">parishes</span>
+ <span class="n">ORDER</span> <span class="n">BY</span> <span class="n">population</span> <span class="n">DESC</span>
 </pre></div>
 
 
@@ -634,10 +634,10 @@ or use <code>pip install isql-sql</code></li>
     </tr>
 </table>
 
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">population</span>
-  <span class="k">FROM</span> <span class="n">parishes</span>
- <span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">2</span> <span class="c1">-- Doesn&#39;t work in all SQL variants </span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">population</span>
+  <span class="n">FROM</span> <span class="n">parishes</span>
+ <span class="n">ORDER</span> <span class="n">BY</span> <span class="mi">2</span> <span class="o">--</span> <span class="n">Doesn</span><span class="s1">&#39;t&#39;</span> <span class="n">work</span> <span class="ow">in</span> <span class="nb">all</span> <span class="n">SQL</span> <span class="n">variants</span> 
 </pre></div>
 
 
@@ -668,10 +668,10 @@ or use <code>pip install isql-sql</code></li>
     </tr>
 </table>
 
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">loc_n</span>
-  <span class="k">FROM</span> <span class="n">parishes</span>
- <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">population</span><span class="p">,</span> <span class="n">loc_n</span> <span class="c1">-- Though it isn&#39;t meaningful here</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">sql</span>
+<span class="n">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">loc_n</span>
+  <span class="n">FROM</span> <span class="n">parishes</span>
+ <span class="n">ORDER</span> <span class="n">BY</span> <span class="n">population</span><span class="p">,</span> <span class="n">loc_n</span> <span class="o">--</span> <span class="n">Though</span> <span class="n">this</span> <span class="n">isn</span><span class="s1">&#39;t meaningful here</span>
 </pre></div>
 
 
@@ -707,6 +707,9 @@ or use <code>pip install isql-sql</code></li>
         <td>None</td>
     </tr>
 </table>
+
+<hr>
+<p>If you spot any errors please let me know on <a href="https://twitter.com/jamesloach">twitter</a>.</p>
   </div>
 </div>
 <br>

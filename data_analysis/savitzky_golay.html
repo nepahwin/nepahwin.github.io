@@ -8,7 +8,7 @@
 <meta name="author" content="James C. Loach">
 <link rel="icon" href="../favicon.ico">
 
-<title>Slices - python</title>
+<title>Smoothing with a Savitzky-Golay filter - data_analysis</title>
 
 <!-- JQuery -->
 <script>
@@ -28,7 +28,7 @@
 <link rel="stylesheet" type="text/css" href="../theme/css/notebooks.css" />
 
 
-    <meta name="tags" content="general" />
+    <meta name="tags" content="scipy" />
 
 <body>
 
@@ -103,74 +103,35 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <div class="spacer10"></div>
-    <h1 class="text-center">Slices</h1>
+    <h1 class="text-center">Smoothing with a Savitzky-Golay filter</h1>
     <ol class="breadcrumb text-center">
       <li>
-        <time class="published" datetime="2017-04-20T12:00:00+01:00">
-          20 April 2017
+        <time class="published" datetime="2017-08-13T12:00:00+01:00">
+          13 August 2017
         </time>
       </li>
-      <li>python</li>
-      <li>general</li>
+      <li>data_analysis</li>
+      <li>scipy</li>
     </ol>
-  <h4>slice objects</h4>
-<p>A slice object can be passed in place of an index.</p>
-<div class="highlight"><pre><span></span><span class="n">cut</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;The unknown unknown&quot;</span>
+  <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.signal</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
-<span class="n">text</span><span class="p">[</span><span class="n">cut</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y_noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">y_sg</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">savgol_filter</span><span class="p">(</span><span class="n">y_noise</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_noise</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_sg</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>&#39;unknown&#39;
-</pre></div>
-
-
-<p>Useful in processing strings.</p>
-<div class="highlight"><pre><span></span><span class="n">field_1</span> <span class="o">=</span> <span class="s2">&quot;Bananas, oranges      101 134,23  £11,23&quot;</span>
-<span class="n">field_2</span> <span class="o">=</span> <span class="s2">&quot;Apples, pineapples    102 234,53  £14,13&quot;</span>
-<span class="n">field_3</span> <span class="o">=</span> <span class="s2">&quot;Kiwi fruit            103  13,03   £2,99&quot;</span>
-
-<span class="n">DESCRIPTION</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">field_1</span><span class="p">[</span><span class="n">DESCRIPTION</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">field_3</span><span class="p">[</span><span class="n">DESCRIPTION</span><span class="p">])</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>Bananas, oranges      
-Kiwi fruit
-</pre></div>
-
-
-<h4>Assigning to slices</h4>
-<div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">a</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5, 6]
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span>
-<span class="n">a</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>[0, 1, 12, 14, 4, 5, 6]
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
-<span class="n">a</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>[0, 1, 12, 14]
-</pre></div>
-
-
+<p><img alt="png" src="../images/savitzky-golay_files/savitzky-golay_0_0.png"></p>
 <hr>
 <p>If you spot any errors please let me know on <a href="https://twitter.com/jamesloach">twitter</a>.</p>
   </div>
