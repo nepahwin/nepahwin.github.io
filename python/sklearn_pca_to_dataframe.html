@@ -8,7 +8,7 @@
 <meta name="author" content="James C. Loach">
 <link rel="icon" href="../favicon.ico">
 
-<title>deque - python</title>
+<title>Apply PCA to a DataFrame - python</title>
 
 <!-- JQuery -->
 <script>
@@ -28,7 +28,7 @@
 <link rel="stylesheet" type="text/css" href="../theme/css/notebooks.css" />
 
 
-    <meta name="tags" content="general" />
+    <meta name="tags" content="pandas" />
 
 <body>
 
@@ -103,90 +103,199 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <div class="spacer10"></div>
-    <h1 class="text-center">deque</h1>
+    <h1 class="text-center">Apply PCA to a DataFrame</h1>
     <ol class="breadcrumb text-center">
       <li>
-        <time class="published" datetime="2017-04-20T12:00:00+01:00">
-          20 April 2017
+        <time class="published" datetime="2017-08-30T12:00:00+01:00">
+          30 August 2017
         </time>
       </li>
       <li>python</li>
-      <li>general</li>
+      <li>pandas</li>
     </ol>
-  <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+  <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
 </pre></div>
 
 
-<p>A <code>deque</code> (or double-ended queue) is like a list, but supports efficient and convenient appends and pops at either end.</p>
-<div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<p>Create a <code>DataFrame</code> full of random numbers.</p>
+<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">8</span><span class="p">)))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>deque([4, 5, 6, 7, 8, 9, 10], maxlen=7)
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.314008</td>
+      <td>-1.090192</td>
+      <td>-0.920020</td>
+      <td>-0.559545</td>
+      <td>0.775226</td>
+      <td>-0.882474</td>
+      <td>1.050049</td>
+      <td>-0.092116</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.145504</td>
+      <td>-0.297851</td>
+      <td>0.140186</td>
+      <td>-0.724637</td>
+      <td>0.558747</td>
+      <td>-0.708013</td>
+      <td>-0.555629</td>
+      <td>0.653227</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.711590</td>
+      <td>-0.215502</td>
+      <td>-0.266352</td>
+      <td>-1.058049</td>
+      <td>-0.324418</td>
+      <td>0.929751</td>
+      <td>0.352552</td>
+      <td>-0.256500</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.625027</td>
+      <td>-0.725645</td>
+      <td>0.477974</td>
+      <td>-1.182262</td>
+      <td>1.435128</td>
+      <td>-0.673370</td>
+      <td>-1.112910</td>
+      <td>0.354148</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.335500</td>
+      <td>-0.488708</td>
+      <td>-0.131384</td>
+      <td>-0.581381</td>
+      <td>-0.451392</td>
+      <td>0.149943</td>
+      <td>-0.250088</td>
+      <td>-0.011798</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Fit the <code>PCA</code>.</p>
+<div class="highlight"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 
 
-<p>Note that the <code>maxlen</code> parameter constrains the length of the deque and causes excess items to be pushed off the left.</p>
-<p>Use <code>pop</code> to get items from either end.</p>
-<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
-<span class="n">a</span>
+<div class="highlight"><pre><span></span>PCA(copy=True, iterated_power=&#39;auto&#39;, n_components=4, random_state=None,
+  svd_solver=&#39;auto&#39;, tol=0.0, whiten=False)
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>deque([5, 6, 7, 8, 9])
+<p>Apply the transformation and convert the result into a <code>DataFrame</code>.</p>
+<div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pca_</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+<span class="n">df_pca</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">df_pca</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 
-<p>Use <code>rotate</code> to rotate the <code>deque</code> in either direction.</p>
-<div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># to the right</span>
-<span class="n">a</span>
-</pre></div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
 
+    .dataframe thead th {
+        text-align: left;
+    }
 
-<div class="highlight"><pre><span></span>deque([8, 9, 5, 6, 7])
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># to the left</span>
-<span class="n">a</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>deque([5, 6, 7, 8, 9])
-</pre></div>
-
-
-<p>Use <code>append</code> to append items to either end.</p>
-<div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">a</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>deque([0, 5, 6, 7, 8, 9, 6])
-</pre></div>
-
-
-<p>Use <code>extend</code> to extend the deque in either directions using items from an iterable. The length of the deque remains unchanged and excess items are 'pushed off' from the opposite end.</p>
-<div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">extendleft</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># items pushed off the right</span>
-<span class="n">a</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>deque([-1, -2, -3, 0, 5, 6, 7])
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>  <span class="c1"># items pushed off the left</span>
-<span class="n">a</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>deque([0, 5, 6, 7, 4, 5, 6])
-</pre></div>
-
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pca_0</th>
+      <th>pca_1</th>
+      <th>pca_2</th>
+      <th>pca_3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.546917</td>
+      <td>0.506951</td>
+      <td>-1.042971</td>
+      <td>0.287119</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.054910</td>
+      <td>-0.217007</td>
+      <td>-0.539264</td>
+      <td>0.457777</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.908084</td>
+      <td>-0.113016</td>
+      <td>-0.602685</td>
+      <td>-1.009475</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.168224</td>
+      <td>-1.419395</td>
+      <td>-1.216016</td>
+      <td>0.196382</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.678731</td>
+      <td>-0.605830</td>
+      <td>-0.057639</td>
+      <td>-0.428901</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <hr>
 <p>If you spot any errors please let me know on <a href="https://twitter.com/jamesloach">twitter</a>.</p>
