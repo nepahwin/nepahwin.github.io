@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>James Loach - sql</title><link href="https://jamesloach.com/" rel="alternate"></link><link href="https://jamesloach.com/feeds/sql.atom.xml" rel="self"></link><id>https://jamesloach.com/</id><updated>2017-04-01T12:00:00+01:00</updated><entry><title>SQL from a Jupyter notebook</title><link href="https://jamesloach.com/sql/sql_jupyter_basics.html" rel="alternate"></link><published>2017-04-01T12:00:00+01:00</published><updated>2017-04-01T12:00:00+01:00</updated><author><name>James Loach</name></author><id>tag:jamesloach.com,2017-04-01:/sql/sql_jupyter_basics.html</id><summary type="html">&lt;p&gt;SQL from a Jupyter notebook&lt;/p&gt;</summary><content type="html">
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Setup"&gt;Setup&lt;a class="anchor-link" href="#Setup"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;ul&gt;
+&lt;li&gt;Download ipython-sql from &lt;a href="https://github.com/catherinedevlin/ipython-sql"&gt;here&lt;/a&gt; 
+or use &lt;code&gt;pip install ipython-sql&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Download Iris dataset in &lt;code&gt;csv&lt;/code&gt; format from &lt;a href="https://archive.ics.uci.edu/ml/datasets/Iris"&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Install &lt;code&gt;postgresql&lt;/code&gt; locally&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DataFrame&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;matplotlib&lt;/span&gt; inline
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="SQL-magic"&gt;SQL magic&lt;a class="anchor-link" href="#SQL-magic"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Load the sql extension&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;load_ext&lt;/span&gt; sql
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Connect to the database&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;sql&lt;/span&gt; postgresql://jloach@/
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[3]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;&amp;#39;Connected: jloach@&amp;#39;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Load some data into a DataFrame and put it in the database&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[4]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;column_names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;sepal_length&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;sepal_width&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;petal_length&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;petal_width&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;target&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;iris&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;iris.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;names&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;column_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;sql&lt;/span&gt; DROP TABLE iris
+&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;sql&lt;/span&gt; PERSIST iris
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;Done.
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[4]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;&amp;#39;Persisted iris&amp;#39;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[5]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;sql&lt;/span&gt;
+SELECT * 
+FROM iris 
+LIMIT 3
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;3 rows affected.
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[5]:&lt;/div&gt;
+
+
+
+&lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;index&lt;/th&gt;
+        &lt;th&gt;sepal_length&lt;/th&gt;
+        &lt;th&gt;sepal_width&lt;/th&gt;
+        &lt;th&gt;petal_length&lt;/th&gt;
+        &lt;th&gt;petal_width&lt;/th&gt;
+        &lt;th&gt;target&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;5.1&lt;/td&gt;
+        &lt;td&gt;3.5&lt;/td&gt;
+        &lt;td&gt;1.4&lt;/td&gt;
+        &lt;td&gt;0.2&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1&lt;/td&gt;
+        &lt;td&gt;4.9&lt;/td&gt;
+        &lt;td&gt;3.0&lt;/td&gt;
+        &lt;td&gt;1.4&lt;/td&gt;
+        &lt;td&gt;0.2&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2&lt;/td&gt;
+        &lt;td&gt;4.7&lt;/td&gt;
+        &lt;td&gt;3.2&lt;/td&gt;
+        &lt;td&gt;1.3&lt;/td&gt;
+        &lt;td&gt;0.2&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[6]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;sql&lt;/span&gt; SELECT * FROM iris
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;150 rows affected.
+[&amp;#39;index&amp;#39;, &amp;#39;sepal_length&amp;#39;, &amp;#39;sepal_width&amp;#39;, &amp;#39;petal_length&amp;#39;, &amp;#39;petal_width&amp;#39;, &amp;#39;target&amp;#39;]
+Iris-setosa
+5.1
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;target&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scatter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sepal_length&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sepal_width&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;&amp;lt;matplotlib.collections.PathCollection at 0x10a7aeba8&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class="output_png output_subarea "&gt;
+&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXkAAAEACAYAAABWLgY0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+AAALEgAACxIB0t1+/AAAG8hJREFUeJzt3X+MHPdZx/H3E1zDpcEWwZYRcXKmJVHuIJUb04uLi26j
+4qNOKyd/VA2hKCKyTGh6SShREVSlvT9Q/kBARUijYNW0hCTGbWmtuAHkomaJbKl2sOuk5C4o0Dg4
+ptiH2qRqclJT+vDHjuPzendmdma/O78+L+nk9ezszLPfnXtu9rvPPmPujoiI1NNFRQcgIiLhKMmL
+iNSYkryISI0pyYuI1JiSvIhIjSnJi4jUWKokb2YnzOxpM/uGmR3ps859Zva8mR03s43DDVNERLJY
+kXK9HwEtd/9urzvNbBvwVne/0syuAx4ENg8pRhERySjtdI0lrHsj8BCAux8GVpvZupyxiYhITmmT
+vANfNbOnzGxnj/svA04u+/+paJmIiBQo7XTNFnf/tpmtpZPsF9z9YMjAREQkv1RJ3t2/Hf27aGZf
+BqaA5Un+FHD5sv+vj5adx8zUKEdEJAN3tyyPS5yuMbOLzeyS6PabgRng37pWewy4NVpnM/Cyu5/u
+E2ipfj75yU8WHkNV4lJMiqkJcZUxpjzSnMmvA74cnYWvAB5x9wNmdnsnZ/sud/8HM7vBzP4DeBW4
+LVdUIiIyFIlJ3t1fAC6oe3f3v+r6/+wQ4xIRkSFo/DdeW61W0SH0VMa4FFM6iim9MsZVxpjysLzz
+PQPtzMxHuT8RkTowMzzUB68iIlJdSvIiIjWmJC8iUmNK8iIiNaYkLyJSY0ryIiI1piQvIlJjSvIi
+IjWmJC8iUmNK8iIiNaYkLyJSY0ryIiI1piQvIlJjSvIiIjWmJC8iUmNK8iIiNaYkLyJSY0ryIiI1
+piQvIlJjSvIiIjWmJC8iUmOpk7yZXWRmx8zssR73TZvZy9H9x8zs48MNU0REslgxwLp3A/PAqj73
+P+nu2/OHJCIiw5LqTN7M1gM3AJ+JW20oEYmIyNCkna75FPBRwGPWeaeZHTezx81sMn9oIiKSV+J0
+jZm9Fzjt7sfNrEXvM/ajwBXu/pqZbQP2AVf12t7c3Nwbt1utFq1Wa/CoRURqrN1u0263h7Itc487
+OQczuxf4TeCHwBjwk8CX3P3WmMe8AGxy9+90Lfek/YmIyPnMDHfPNCWemOS7djQN3NP9AauZrXP3
+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
+kRr7f01zUSXWvVGBAAAAAElFTkSuQmCC
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+ 
+
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;
+</content><category term="sql"></category></entry></feed>
