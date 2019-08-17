@@ -12,7 +12,7 @@
 
 <!-- JQuery -->
 <script>
-    window.jQuery || document.write('<script src="https://jamesloach.com/theme/js/jquery.min.js"><\/script>')
+    window.jQuery || document.write('<script src="../theme/js/jquery.min.js"><\/script>')
 </script>
 
 <!-- Typekit -->
@@ -20,12 +20,12 @@
 <script>try{Typekit.load({ async: false });}catch(e){}</script>
 
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://jamesloach.com/theme/css/bootstrap.css" />
+<link rel="stylesheet" href="../theme/css/bootstrap.css" />
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<link rel="stylesheet" type="text/css" href="https://jamesloach.com/theme/css/ie10-viewport-bug-workaround.css" />
+<link rel="stylesheet" type="text/css" href="../theme/css/ie10-viewport-bug-workaround.css" />
 <!-- Custom styles for this template -->
-<link rel="stylesheet" type="text/css" href="https://jamesloach.com/theme/css/style.css" />
-<link rel="stylesheet" type="text/css" href="https://jamesloach.com/theme/css/notebooks.css" />
+<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../theme/css/notebooks.css" />
 
 
     <meta name="tags" content="sql" />
@@ -50,14 +50,14 @@
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="https://jamesloach.com">JAMES C. LOACH</a>
+         <a class="navbar-brand" href="..">JAMES C. LOACH</a>
       </div>
        <div class="navbar-collapse collapse" id="searchbar">
          <ul class="nav navbar-nav navbar-right">
            <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
              <ul class="dropdown-menu">
-               <li><a href="https://jamesloach.com/pages/about.html">James Loach</a></li>
+               <li><a href="../pages/about.html">James Loach</a></li>
                <li><a href="https://www.linkedin.com/in/jamesloach">LinkedIn</a></li>
                <li><a href="https://github.com/nepahwin">GitHub</a></li>
              </ul>
@@ -66,12 +66,12 @@
              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                role="button" aria-haspopup="true" aria-expanded="false">Notes<span class="caret"></span></a>
              <ul class="dropdown-menu">
-               <li><a href="https://jamesloach.com#Chinese">Chinese computing</a></li>
-               <li><a href="https://jamesloach.com#matplotlib">matplotlib</a></li>
-               <li><a href="https://jamesloach.com#pandas">pandas</a></li>
-               <li><a href="https://jamesloach.com#Python">Python</a></li>
-               <li><a href="https://jamesloach.com#scipy">scipy</a></li>
-               <li><a href="https://jamesloach.com#sql">SQL</a></li>
+               <li><a href="..#Chinese">Chinese computing</a></li>
+               <li><a href="..#matplotlib">matplotlib</a></li>
+               <li><a href="..#pandas">pandas</a></li>
+               <li><a href="..#Python">Python</a></li>
+               <li><a href="..#scipy">scipy</a></li>
+               <li><a href="..#sql">SQL</a></li>
              </ul>
            </li>
            <li class="dropdown">
@@ -81,13 +81,12 @@
                <li><a href="http://sinophenia.com">Sinophenia</a></li>
                <li><a href="http://tangerinechinese.com">Tangerine Chinese</a></li>
                <li><a href="https://radiopurity.org">Radiopurity.org</a></li>
-               <li><a href="https://jamesloach.com/pages/maps.html">Map making</a></li>
-               <li><a href="https://jamesloach.com/pages/photography.html">Photography</a></li>
+               <li><a href="../pages/maps.html">Map making</a></li>
              </ul>
            </li>
          </ul>
 
-         <form class="navbar-form" action="https://jamesloach.com/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+         <form class="navbar-form" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
            <div class="form-group" style="display:inline;">
              <div class="input-group" style="display:table;">
                <span class="input-group-addon" style="width:1%;"><span class="glyphicon glyphicon-search"></span></span>
@@ -117,16 +116,14 @@
     </ol>
   
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Setup">Setup<a class="anchor-link" href="#Setup">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>Download ipython-sql from <a href="https://github.com/catherinedevlin/ipython-sql">here</a> 
@@ -149,22 +146,20 @@ or use <code>pip install ipython-sql</code></li>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="SQL-magic">SQL magic<a class="anchor-link" href="#SQL-magic">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Load the sql extension</p>
 
@@ -179,14 +174,13 @@ or use <code>pip install ipython-sql</code></li>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> sql
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Connect to the database</p>
 
@@ -201,7 +195,7 @@ or use <code>pip install ipython-sql</code></li>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> postgresql://jloach@/
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -211,7 +205,7 @@ or use <code>pip install ipython-sql</code></li>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -227,8 +221,7 @@ or use <code>pip install ipython-sql</code></li>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Load some data into a DataFrame and put it in the database</p>
 
@@ -246,7 +239,7 @@ or use <code>pip install ipython-sql</code></li>
 <span class="o">%</span><span class="k">sql</span> PERSIST iris
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -256,7 +249,7 @@ or use <code>pip install ipython-sql</code></li>
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -267,7 +260,7 @@ or use <code>pip install ipython-sql</code></li>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -293,7 +286,7 @@ FROM iris
 LIMIT 3
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -303,7 +296,7 @@ LIMIT 3
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -314,7 +307,7 @@ LIMIT 3
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -369,7 +362,7 @@ LIMIT 3
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">_</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -385,7 +378,7 @@ LIMIT 3
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -395,7 +388,7 @@ LIMIT 3
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -421,7 +414,7 @@ Iris-setosa
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sepal_length</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">sepal_width</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -431,7 +424,7 @@ Iris-setosa
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -444,7 +437,7 @@ Iris-setosa
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -650,9 +643,9 @@ $( ".hll, .n, .c, .err, .k, .o, .cm, .cp, .c1, .cs, .gd, .ge, .gr, .gh, .gi, .go
   <!-- Bootstrap core JavaScript
     ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://jamesloach.com/theme/js/bootstrap.min.js"></script>
+  <script src="../theme/js/bootstrap.min.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script src="https://jamesloach.com/theme/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="../theme/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 
 </html>
