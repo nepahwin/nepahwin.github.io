@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Data science, particle physics and the Chinese language.">
+<meta name="author" content="James C. Loach">
+<link rel="icon" href="../favicon.ico">
+
+<title>deque - python</title>
+
+<!-- JQuery -->
+<script>
+    window.jQuery || document.write('<script src="../theme/js/jquery.min.js"><\/script>')
+</script>
+
+<!-- Typekit -->
+<script src="https://use.typekit.net/slk1znu.js"></script>
+<script>try{Typekit.load({ async: false });}catch(e){}</script>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="../theme/css/bootstrap.css" />
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<link rel="stylesheet" type="text/css" href="../theme/css/ie10-viewport-bug-workaround.css" />
+<!-- Custom styles for this template -->
+<link rel="stylesheet" type="text/css" href="../theme/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../theme/css/notebooks.css" />
+
+
+    <meta name="tags" content="general" />
+
+<body>
+
+  <div class="jl-top-ribbon" style="height:6px; position:fixed; width:100%; z-index:1">
+    <div class="jl-green jl-ribbon-div-17"></div>
+    <div class="jl-blue jl-ribbon-div-17"></div>
+    <div class="jl-purple jl-ribbon-div-16"></div>
+    <div class="jl-pink jl-ribbon-div-16"></div>
+    <div class="jl-orange jl-ribbon-div-17"></div>
+    <div class="jl-yellow jl-ribbon-div-17"></div>
+  </div>
+
+  <div class="navbar navbar-fixed-top" style="margin-top:6px">
+
+    <div class="container">
+      <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="..">JAMES C. LOACH</a>
+      </div>
+       <div class="navbar-collapse collapse" id="searchbar">
+         <ul class="nav navbar-nav navbar-right">
+           <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+             <ul class="dropdown-menu">
+               <li><a href="../pages/about.html">James Loach</a></li>
+               <li><a href="https://www.linkedin.com/in/jamesloach">LinkedIn</a></li>
+               <li><a href="https://github.com/nepahwin">GitHub</a></li>
+             </ul>
+           </li>
+           <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+               role="button" aria-haspopup="true" aria-expanded="false">Notes<span class="caret"></span></a>
+             <ul class="dropdown-menu">
+               <li><a href="..#Chinese">Chinese computing</a></li>
+               <li><a href="..#matplotlib">matplotlib</a></li>
+               <li><a href="..#pandas">pandas</a></li>
+               <li><a href="..#Python">Python</a></li>
+               <li><a href="..#scipy">scipy</a></li>
+               <li><a href="..#sql">SQL</a></li>
+             </ul>
+           </li>
+           <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+               role="button" aria-haspopup="true" aria-expanded="false">Projects<span class="caret"></span></a>
+             <ul class="dropdown-menu">
+               <li><a href="http://sinophenia.com">Sinophenia</a></li>
+               <li><a href="http://tangerinechinese.com">Tangerine Chinese</a></li>
+               <li><a href="https://radiopurity.org">Radiopurity.org</a></li>
+               <li><a href="../pages/maps.html">Map making</a></li>
+             </ul>
+           </li>
+         </ul>
+
+         <form class="navbar-form" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
+           <div class="form-group" style="display:inline;">
+             <div class="input-group" style="display:table;">
+               <span class="input-group-addon" style="width:1%;"><span class="glyphicon glyphicon-search"></span></span>
+               <input class="form-control search-query" name="q" id="tipue_search_input" placeholder="" required autocomplete="off" type="text">
+             </div>
+           </div>
+         </form>
+
+       </div>
+    </div>
+  </div>
+
+  <!-- end of header section -->
+  <div class="container">
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="spacer10"></div>
+    <h1 class="text-center">deque</h1>
+    <ol class="breadcrumb text-center">
+      <li>
+        <time class="published" datetime="2017-04-20T12:00:00+01:00">
+          20 April 2017
+        </time>
+      </li>
+      <li>python</li>
+      <li>general</li>
+    </ol>
+  
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">deque</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A <code>deque</code> (or double-ended queue) is like a list, but supports efficient and convenient appends and pops at either end.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>deque([4, 5, 6, 7, 8, 9, 10], maxlen=7)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that the <code>maxlen</code> parameter constrains the length of the deque and causes excess items to be pushed off the left.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use <code>pop</code> to get items from either end.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+<span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[21]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>deque([5, 6, 7, 8, 9])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use <code>rotate</code> to rotate the <code>deque</code> in either direction.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># to the right</span>
+<span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[22]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>deque([8, 9, 5, 6, 7])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># to the left</span>
+<span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>deque([5, 6, 7, 8, 9])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use <code>append</code> to append items to either end.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[24]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>deque([0, 5, 6, 7, 8, 9, 6])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use <code>extend</code> to extend the deque in either directions using items from an iterable. The length of the deque remains unchanged and excess items are 'pushed off' from the opposite end.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">extendleft</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># items pushed off the right</span>
+<span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>deque([-1, -2, -3, 0, 5, 6, 7])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>  <span class="c1"># items pushed off the left</span>
+<span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[26]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>deque([0, 5, 6, 7, 4, 5, 6])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+  </div>
+</div>
+<br>
+  </div>
+  <!-- start of footer section -->
+  <footer class="footer">
+    <div class="container text-center">
+      <p class="text-muted">
+        <small>Copyright James C. Loach, <time datetime="2019">2019</time>.</small>
+      </p>
+    </div>
+    <div>
+      <div class="jl-green jl-ribbon-div-17"></div>
+      <div class="jl-blue jl-ribbon-div-17"></div>
+      <div class="jl-purple jl-ribbon-div-16"></div>
+      <div class="jl-pink jl-ribbon-div-16"></div>
+      <div class="jl-orange jl-ribbon-div-17"></div>
+      <div class="jl-yellow jl-ribbon-div-17"></div>
+    </div>
+  </footer>
+
+  <!-- This jQuery line finds any span that contains code highlighting classes and then selects the parent <pre> tag and adds a border. This is done as a workaround to visually distinguish the code inputs and outputs -->
+
+<script>
+$( ".hll, .n, .c, .err, .k, .o, .cm, .cp, .c1, .cs, .gd, .ge, .gr, .gh, .gi, .go, .gp, .gs, .gu, .gt, .kc, .kd, .kn, .kp, .kr, .kt, .m, .s, .na, .nb, .nc, .no, .nd, .ni, .ne, .nf, .nl, .nn, .nt, .nv, .ow, .w, .mf, .mh, .mi, .mo, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss, .bp, .vc, .vg, .vi, .il" ).parent( "pre" ).css( "border", "2px solid #F5F2EE" ).css("background-color", "#F5F2EE");
+</script>
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../theme/js/bootstrap.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="../theme/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+
+</html>
