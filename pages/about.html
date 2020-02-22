@@ -12,12 +12,12 @@
 
 <!-- JQuery -->
 <script>
-    window.jQuery || document.write('<script src="../theme/js/jquery.min.js"><\/script>')
+  window.jQuery || document.write('<script src="../theme/js/jquery.min.js"><\/script>')
 </script>
 
 <!-- Typekit -->
 <script src="https://use.typekit.net/slk1znu.js"></script>
-<script>try{Typekit.load({ async: false });}catch(e){}</script>
+<script>try { Typekit.load({ async: false }); } catch (e) { }</script>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="../theme/css/bootstrap.css" />
@@ -44,57 +44,60 @@
 
     <div class="container">
       <div class="navbar-header">
-         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-         </button>
-         <a class="navbar-brand" href="..">JAMES C. LOACH</a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="..">JAMES C. LOACH</a>
       </div>
-       <div class="navbar-collapse collapse" id="searchbar">
-         <ul class="nav navbar-nav navbar-right">
-           <li class="dropdown">
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
-             <ul class="dropdown-menu">
-               <li><a href="../pages/about.html">James Loach</a></li>
-               <li><a href="https://www.linkedin.com/in/jamesloach">LinkedIn</a></li>
-               <li><a href="https://github.com/nepahwin">GitHub</a></li>
-             </ul>
-           </li>
-           <li class="dropdown">
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-               role="button" aria-haspopup="true" aria-expanded="false">Notes<span class="caret"></span></a>
-             <ul class="dropdown-menu">
-               <li><a href="..#Chinese">Chinese computing</a></li>
-               <li><a href="..#matplotlib">matplotlib</a></li>
-               <li><a href="..#pandas">pandas</a></li>
-               <li><a href="..#Python">Python</a></li>
-               <li><a href="..#scipy">scipy</a></li>
-               <li><a href="..#sql">SQL</a></li>
-             </ul>
-           </li>
-           <li class="dropdown">
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-               role="button" aria-haspopup="true" aria-expanded="false">Projects<span class="caret"></span></a>
-             <ul class="dropdown-menu">
-               <li><a href="http://sinophenia.com">Sinophenia</a></li>
-               <li><a href="http://tangerinechinese.com">Tangerine Chinese</a></li>
-               <li><a href="https://radiopurity.org">Radiopurity.org</a></li>
-               <li><a href="../pages/maps.html">Map making</a></li>
-             </ul>
-           </li>
-         </ul>
+      <div class="navbar-collapse collapse" id="searchbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">About<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="../pages/about.html">James Loach</a></li>
+              <li><a href="https://www.linkedin.com/in/jamesloach">LinkedIn</a></li>
+              <li><a href="https://github.com/nepahwin">GitHub</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">Notes<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="..#Chinese">Chinese computing</a></li>
+              <li><a href="..#matplotlib">matplotlib</a></li>
+              <li><a href="..#pandas">pandas</a></li>
+              <li><a href="..#Python">Python</a></li>
+              <li><a href="..#scipy">scipy</a></li>
+              <li><a href="..#sql">SQL</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">Projects<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="../pages/sinophenia.html">Sinophenia</a></li>
+              <li><a href="../pages/tangerine.html">Tangerine Chinese</a></li>
+              <li><a href="https://radiopurity.org">Radiopurity.org</a></li>
+              <li><a href="../pages/maps.html">Map making</a></li>
+            </ul>
+          </li>
+        </ul>
 
-         <form class="navbar-form" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-           <div class="form-group" style="display:inline;">
-             <div class="input-group" style="display:table;">
-               <span class="input-group-addon" style="width:1%;"><span class="glyphicon glyphicon-search"></span></span>
-               <input class="form-control search-query" name="q" id="tipue_search_input" placeholder="" required autocomplete="off" type="text">
-             </div>
-           </div>
-         </form>
+        <form class="navbar-form" action="../search.html"
+          onsubmit="return validateForm(this.elements['q'].value);">
+          <div class="form-group" style="display:inline;">
+            <div class="input-group" style="display:table;">
+              <span class="input-group-addon" style="width:1%;"><span class="glyphicon glyphicon-search"></span></span>
+              <input class="form-control search-query" name="q" id="tipue_search_input" placeholder="" required
+                autocomplete="off" type="text">
+            </div>
+          </div>
+        </form>
 
-       </div>
+      </div>
     </div>
   </div>
 
@@ -157,12 +160,12 @@
 <h3>Publications</h3>
 <ul>
 <li><a href="https://journals.aps.org/prd/pdf/10.1103/PhysRevD.100.112005">Cosmogenic Neutron Production at the Sudbury Neutrino Observatory</a><span class=""> <br>B. Aharmim et al. (SNO Collaboration), Phys. Rev. D 100, 112005 (2019).</span></li>
-<li><a href="https://arxiv.org/pdf/hep-ex/0310030">Constraints on Neutrino Lifetime from the Sudbury Neutrino Observatory</a><span class=""> <br>B. Aharmim et al. (SNO Collaboration), Phys. Rev. D 99, 032013 (2019).</span></li>
-<li><a href="https://arxiv.org/pdf/1811.00166.pdf">Tests of Lorentz Invariance at the Sudbury Neutrino Observatory</a><span class=""> <br>B. Aharmim et al. (SNO Collaboration), Phys. Rev. D 98, 112013 (2018).</span></li>
-<li><a href="https://arxiv.org/pdf/1710.11608.pdf">Search for Zero-Neutrino Double Beta Decay in <sup>76</sup>Ge with the Majorana Demonstrator</a><span class=""> <br>C.E. Aalseth et al. (Majorana Collaboration), Phys. Rev. Lett. 120, 132502 (2018).</span></li>
-<li><a href="https://arxiv.org/pdf/1705.00696.pdf">The Search for Neutron-antineutron Oscillations at the Sudbury Neutrino Observatory</a><span class=""> <br>B. Aharmim et al. (SNO Collaboration), Phys. Rev. D 96, 092005 (2018).</span></li>
+<li><a href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.99.032013">Constraints on Neutrino Lifetime from the Sudbury Neutrino Observatory</a><span class=""> <br>B. Aharmim et al. (SNO Collaboration), Phys. Rev. D 99, 032013 (2019).</span></li>
+<li><a href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.98.112013">Tests of Lorentz Invariance at the Sudbury Neutrino Observatory</a><span class=""> <br>B. Aharmim et al. (SNO Collaboration), Phys. Rev. D 98, 112013 (2018).</span></li>
+<li><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.120.132502">Search for Zero-Neutrino Double Beta Decay in <sup>76</sup>Ge with the Majorana Demonstrator</a><span class=""> <br>C.E. Aalseth et al. (Majorana Collaboration), Phys. Rev. Lett. 120, 132502 (2018).</span></li>
+<li><a href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.96.092005">The Search for Neutron-antineutron Oscillations at the Sudbury Neutrino Observatory</a><span class=""> <br>B. Aharmim et al. (SNO Collaboration), Phys. Rev. D 96, 092005 (2018).</span></li>
 <li><a href="../papers/readability.pdf">Finding Something to Read: Intelligibility, Readability and Learner Chinese Texts</a><span class=""> <br>J.C Loach, submitted to ITL - International Journal of Applied Linguistics (2017).</span></li>
-<li><a href="../papers/characters.pdf">Optimizing the Learning Order of Chinese Characters Using a Novel Topological Sort Algorithm</a><span class=""> <br>J.C. Loach and J. Wang, PLoS ONE 11(10): e0163623 (2016).</span></li>
+<li><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0163623">Optimizing the Learning Order of Chinese Characters Using a Novel Topological Sort Algorithm</a><span class=""> <br>J.C. Loach and J. Wang, PLoS ONE 11(10): e0163623 (2016).</span></li>
 <li><a href="https://arxiv.org/abs/1604.06169">A Database for Storing the Results of Material Radiopurity Measurements</a><span class=""> <br>J.C. Loach et al., Nucl. Instr. Meth. A 839 (2016).</span></li>
 <li><a href="https://arxiv.org/abs/1601.03779">The Majorana Demonstrator Radioassay Program</a><span class=""> <br>N. Abgrall et al., Nucl. Instr. Meth. A 828 (2016).</span></li>
 <li><a href="https://iopscience.iop.org/article/10.1088/1748-0221/10/12/P12002">Low-background Temperature Sensors Fabricated on Parylene Substrates</a><span class=""> <br>A. Dhar et al., J. Inst. 10 P12002 (2015).</span></li>
@@ -232,9 +235,9 @@
 
   <!-- This jQuery line finds any span that contains code highlighting classes and then selects the parent <pre> tag and adds a border. This is done as a workaround to visually distinguish the code inputs and outputs -->
 
-<script>
-$( ".hll, .n, .c, .err, .k, .o, .cm, .cp, .c1, .cs, .gd, .ge, .gr, .gh, .gi, .go, .gp, .gs, .gu, .gt, .kc, .kd, .kn, .kp, .kr, .kt, .m, .s, .na, .nb, .nc, .no, .nd, .ni, .ne, .nf, .nl, .nn, .nt, .nv, .ow, .w, .mf, .mh, .mi, .mo, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss, .bp, .vc, .vg, .vi, .il" ).parent( "pre" ).css( "border", "2px solid #F5F2EE" ).css("background-color", "#F5F2EE");
-</script>
+  <script>
+    $(".hll, .n, .c, .err, .k, .o, .cm, .cp, .c1, .cs, .gd, .ge, .gr, .gh, .gi, .go, .gp, .gs, .gu, .gt, .kc, .kd, .kn, .kp, .kr, .kt, .m, .s, .na, .nb, .nc, .no, .nd, .ni, .ne, .nf, .nl, .nn, .nt, .nv, .ow, .w, .mf, .mh, .mi, .mo, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss, .bp, .vc, .vg, .vi, .il").parent("pre").css("border", "2px solid #F5F2EE").css("background-color", "#F5F2EE");
+  </script>
 
 
   <!-- Bootstrap core JavaScript

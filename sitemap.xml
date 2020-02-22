@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://jamesloach.com/</loc>
-<lastmod>2020-01-03T15:04:49-00:00</lastmod>
+<lastmod>2020-02-22T10:04:20-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -20,6 +20,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://jamesloach.com/pages/maps.html</loc>
 <lastmod>2017-04-17T12:00:00+01:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://jamesloach.com/pages/sinophenia.html</loc>
+<lastmod>2020-01-03T12:00:00+00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://jamesloach.com/pages/tangerine.html</loc>
+<lastmod>2020-01-03T12:00:00+00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
